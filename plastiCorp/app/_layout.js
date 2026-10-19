@@ -10,15 +10,23 @@ export default function Layout() {
         name="index"
         options={{
           tabBarStyle: {
-            backgroundColor:"#f8f9f9"
+            backgroundColor: "#f8f9f9"
           },
           headerStyle: {
             backgroundColor: "#b40001"
-        }, title: "Inicio", headerTintColor:"white", tabBarActiveTintColor:"#00A8CC", headerShadowVisible:false , headerTitle:"Seja bem-vindo... ", tabBarIcon:({color}) => <FontAwesome6 name="house" size={20} color={color} />  }}
+          }, title: "Inicio", headerTintColor: "white", tabBarActiveTintColor: "#00A8CC", headerShadowVisible: false, headerTitle: "Seja bem-vindo... ", tabBarIcon: ({ color }) => <FontAwesome6 name="house" size={20} color={color} />
+        }}
       />
       <Tabs.Screen
         name="Gemini"
-        options={{ title: "I.A", headerTitle:"I.A integrada" , tabBarActiveTintColor:"#00A8CC", tabBarIcon:({color}) => <AntDesign name="robot" size={20} color={color} />  }}
+        options={{
+          tabBarStyle: {
+            backgroundColor: "#f8f9f9"
+          },
+          headerStyle: {
+            backgroundColor: "#b40001"
+          }, title: "I.A", headerTintColor: "white", headerTitle: "I.A integrada", tabBarActiveTintColor: "#00A8CC", headerShadowVisible: false, tabBarIcon: ({ color }) => <AntDesign name="robot" size={20} color={color} />
+        }}
       />
     </Tabs>
   );
