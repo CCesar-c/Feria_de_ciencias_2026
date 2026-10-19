@@ -11,9 +11,18 @@ export default function Inicio() {
         resizeMode="cover"
         style={estilo.background}
       >
-        <Text>Olaa</Text>
+        <Image
+          source={require("../assets/blood_drop.jpg")}
+          contentFit="fill"
+          style={{
+            height: 225,
+            width: 400,
+            zIndex: 0,
+            opacity: 0.8,
+            borderRadius: 100,
+          }}
+        />
       </ImageBackground>
-      <StatusBar style="auto" />
     </View>
   );
 }

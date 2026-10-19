@@ -9,6 +9,9 @@ let estilo = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  text: {
+    color:"#2C3E50"
   }
 
 });
