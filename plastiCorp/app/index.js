@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
-import { Text, View, Image, ImageBackground, StyleSheet } from "react-native";
+import { Image } from "expo-image";
+import { Text, View, ImageBackground } from "react-native";
 import estilo from "../style/global.js";
 
 export default function Inicio() {
@@ -11,8 +12,8 @@ export default function Inicio() {
         style={estilo.background}
       >
         <Text>Olaa</Text>
-        <StatusBar style="auto" />
       </ImageBackground>
+      <StatusBar style="auto" />
     </View>
   );
 }
