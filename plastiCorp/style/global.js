@@ -5,14 +5,15 @@ let estilo = StyleSheet.create({
   background: {
     display: "flex",
     flex: 1,
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent:"center",
+    alignItems:"center",
+    height: '100vh',
+    width: '100vw',
   },
   text: {
-    color:"#2C3E50"
-  }
-
+    color:"#2C3E50",
+    
+  },
+  
 });
 export default estilo;

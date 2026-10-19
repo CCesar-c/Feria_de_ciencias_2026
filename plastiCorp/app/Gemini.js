@@ -1,21 +1,23 @@
+
 import { GoogleGenAI } from "@google/genai"
 import { useState } from "react"
-import { View, Button, Text, TextInput, ScrollView } from "react-native"
+import { View, Button, Text, TextInput, ScrollView, TouchableOpacity } from "react-native"
+import estilo from "../style/global"
 
 const ai = new GoogleGenAI({
-  apiKey: "AQ.Ab8RN6LMwZKf4LJoaEv9KN4ciftREUcoj8kSP0uf9KbHswI3nw"
+  apiKey: process.env.EXPO_PUBLIC_Gemini_key
 })
 
 export default function Gemini() {
 
-  const [ pergunta, setPergunta ] = useState("")
-  const [ resposta, setResposta ] = useState("")
+  const [pergunta, setPergunta] = useState("")
+  const [resposta, setResposta] = useState("")
 
   async function askgemini() {
     try {
       const respons = await ai.models.generateContent({
         model: "gemini-3.8-flash",
-        contents: [ pergunta ],
+        contents: [pergunta],
         config: {
           systemInstruction: "Tu vas a ser un Tipo de professor que explicara de forma simple y concisa sobre: residuos, reciclaje y microplasticos"
         }
@@ -30,24 +32,31 @@ export default function Gemini() {
   }
 
   return (
-    <ScrollView style={{ padding: 20, marginTop: 40 }}>
-      <TextInput
-        placeholder="escreva sua pergunta aqui"
-        onChangeText={(t) => setPergunta(t)}
-        value={pergunta}
-        style={{ borderWidth: 1, borderColor: '#ccc', padding: 10, marginBottom: 10, borderRadius: 5 }}
-      />
-      <Button
-        title="enviar pergunta"
-        onPress={askgemini}
-      />
+    <View style={estilo.background} >
+      <ScrollView >
+        {resposta ? (
+          <View style={{ backgroundColor: '#f0f0f0', borderRadius: 5 }}>
+            <Text style={{ fontWeight: 'bold', marginBottom: 5 }}>Resposta do Professor:</Text>
+            <Text>{resposta}</Text>
+          </View>
+        ) : null}
+      </ScrollView>
+      <View style={{ flex: 1, bottom: -125, display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap:10}} >
 
-      {resposta ? (
-        <View style={{ marginTop: 20, padding: 10, backgroundColor: '#f0f0f0', borderRadius: 5 }}>
-          <Text style={{ fontWeight: 'bold', marginBottom: 5 }}>Resposta do Professor:</Text>
-          <Text>{resposta}</Text>
-        </View>
-      ) : null}
-    </ScrollView>
+        <TextInput
+          placeholder="escreva sua pergunta aqui"
+          onChangeText={(t) => setPergunta(t)}
+          value={pergunta}
+          style={{ height: 50, borderWidth: 1, borderColor: '#ccc', borderRadius: 5 }}
+        />
+        <TouchableOpacity
+          style={{ borderColor: "green", borderWidth:1 }}
+          onPress={askgemini}
+        ><Text>
+            enviar resposta
+          </Text></TouchableOpacity>
+      </View>
+    </View>
+
   )
 }
