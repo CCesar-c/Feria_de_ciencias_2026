@@ -57,7 +57,7 @@ export default function Inicio() {
           width: "98%",
           boxSizing: "border-box",
           margin: 5,
-          borderRadius: 10,
+          borderRadius: 15,
           padding: 10,
           borderColor: "#0F172A",
           borderWidth: 1,
@@ -73,13 +73,13 @@ export default function Inicio() {
         <Text style={{ fontSize: 15 }} >
           É um aplicativo destinado a o ensinamento aprendizado sobre os microplasticos a suas consequencias etc..
         </Text>
+        <Image source={require("../assets/iconCentral.jpg")} style={{ height: 200, width: 200, left: 25 }} />
         <Text style={{ fontSize: 25 }} >
           Para que foi criada PlastiCorp ?
         </Text>
         <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar 
+          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
         </Text>
-        <Image source={require("../assets/iconCentral.jpg")} style={{ height: 200, width: 200, left: 25, gap: 5 }} />
 
       </ScrollView>
 
