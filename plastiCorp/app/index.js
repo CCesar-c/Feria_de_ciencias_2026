@@ -27,7 +27,7 @@ export default function Inicio() {
           borderRadius: 15,
           borderColor: "#0F172A",
           borderWidth: 1,
-          gap:10
+          gap: 10
         }}
         showsVerticalScrollIndicator={false}
       >
@@ -43,72 +43,6 @@ export default function Inicio() {
 
         <Text style={{ fontSize: 25 }} >
           Para que foi criada PlastiCorp ?
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
-        </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
         </Text>
         <Text style={{ fontSize: 15 }} >
           Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
