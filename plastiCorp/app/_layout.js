@@ -14,7 +14,7 @@ export default function Layout() {
       headerShown: true,
       headerLeft: () => <Image source={require("../assets/iconCentral.jpg")} contentFit="cover"
         style={{
-          height: 25, width: 25, borderRadius: 100,
+          height: 25, width: 25, borderRadius: 100, marginRight:5
         }}
       />,
     }} >
@@ -29,7 +29,7 @@ export default function Layout() {
           },
           title: "Inicio",
           headerTintColor: "white",
-          tabBarActiveTintColor: "#E11D48",
+          tabBarActiveTintColor: "white",
           tabBarInactiveTintColor: "#94A3B8",
           headerShadowVisible: false,
           headerTitle: "PlastiCorp",
@@ -49,7 +49,7 @@ export default function Layout() {
           title: "I.A",
           headerTintColor: "white",
           headerTitle: "I.A integrada",
-          tabBarActiveTintColor: "#E11D48",
+          tabBarActiveTintColor: "white",
           tabBarInactiveTintColor: "#94A3B8",
 
           headerShadowVisible: false,
@@ -68,7 +68,7 @@ export default function Layout() {
           title: "calcularPlastico",
           headerTintColor: "white",
           headerTitle: "calcularPlastico",
-          tabBarActiveTintColor: "#E11D48",
+          tabBarActiveTintColor: "white",
           tabBarInactiveTintColor: "#94A3B8",
 
           headerShadowVisible: false,
