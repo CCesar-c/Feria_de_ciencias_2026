@@ -20,10 +20,8 @@ export default function Inicio() {
         contentContainerStyle={{
           minHeight: "strech",
           width: "strech",
-          marginLeft: 10,
-          marginRight: 10,
-          paddingLeft: 10,
-          paddingRight: 10,
+          margin: 10,
+          padding: 10,
           borderRadius: 15,
           borderColor: "#0F172A",
           borderWidth: 1,
