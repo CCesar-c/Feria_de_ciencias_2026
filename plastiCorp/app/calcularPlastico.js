@@ -1,6 +1,8 @@
-import Checkbox from "expo-checkbox";
+
 import { useState } from "react";
-import { ScrollView, View, TextInput, } from "react-native";
+import { ScrollView, View, TextInput, Text } from "react-native";
+import estilo from "../style/global";
+import { Checkbox, Host} from "@expo/ui";
 
 
 export default function calcularPlastico() {
@@ -15,10 +17,12 @@ export default function calcularPlastico() {
                 flexDirection: "column",
             }}
         >
-            <View style={{ flex:1,  alignSelf:"center"}} >
-                <Text>Calculo de plastico</Text>
-                <TextInput placeholder="Quantos litros de agua tomou hoje?"  />
-                <Checkbox value={aguafiltrada} onClick={() => setAguafiltrada(!aguafiltrada)} />
+            <View style={{ flex: 1, alignSelf: "center", borderColor: "black", borderWidth: 1, padding: 10, gap: 10 }} >
+                <Text style={estilo.titulo} >Calculo de plastico</Text>
+                <TextInput style={estilo.input} placeholder="Quantos litros de agua tomou hoje?" />
+                <Host matchContents style={{ color:"black", backgroundColor:"black" }} >
+                    <Checkbox label="agua filtrada?" value={aguafiltrada} onValueChange={setAguafiltrada} />
+                </Host>
             </View>
 
             <ScrollView
