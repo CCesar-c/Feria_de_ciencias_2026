@@ -45,7 +45,7 @@ export default function Gemini() {
         ) : null}
 
       </ScrollView>
-      <View style={{ flex: 1, bottom: 10, display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 10, position: "absolute", backgroundColor: "white", height: 75, width: 300, borderRadius:50 }} >
+      <View style={{ flex: 1, bottom: 125, display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 10, position: "absolute", backgroundColor: "white", height: 75, width: 300, borderRadius:50 }} >
 
         <TextInput
           placeholder="escreva sua pergunta aqui"
