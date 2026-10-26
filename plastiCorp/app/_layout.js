@@ -4,7 +4,6 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import estilo from "../style/global.js";
 import { Image } from "expo-image";
-import { Button } from "react-native";
 
 export default function Layout() {
   return (
