@@ -4,6 +4,7 @@ import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import estilo from "../style/global.js";
 import { Image } from "expo-image";
+import { Entypo } from "@expo/vector-icons";
 
 export default function Layout() {
   return (
@@ -61,15 +62,15 @@ export default function Layout() {
             backgroundColor: "#0F172A",
           },
 
-          title: "I.A",
+          title: "Chat",
           headerTintColor: "white",
-          headerTitle: "I.A integrada",
+          headerTitle: "Chat Integrado",
           tabBarActiveTintColor: "white",
           tabBarInactiveTintColor: "#94A3B8",
 
           headerShadowVisible: false,
           tabBarIcon: ({ color }) => (
-            <AntDesign name="robot" size={20} color={color} />
+            <Entypo name="chat" size={20} color={color} />
           ),
         }}
       />

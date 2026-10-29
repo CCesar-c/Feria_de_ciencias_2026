@@ -1,7 +1,8 @@
-import { StatusBar } from "expo-status-bar";
 import { Image } from "expo-image";
-import { Text, View, ImageBackground, ScrollView, } from "react-native";
+import { Text, View, ImageBackground, ScrollView } from "react-native";
 import estilo from "../style/global.js";
+import { LineChart } from "react-native-chart-kit/v2";
+import { Link } from "expo-router";
 
 export default function Inicio() {
   return (
@@ -9,47 +10,70 @@ export default function Inicio() {
       style={{
         flex: 1,
         minHeight: "100vh",
+        padding:10,
         width: "100vw",
         boxSizing: "border-box",
         flexDirection: "column",
-        alignItems: "baseline",
-
-      }} >
+        alignItems: "center",
+      }}
+    >
       <ScrollView
         scrollEnabled={true}
         contentContainerStyle={{
           minHeight: "strech",
           width: "strech",
-          margin: 10,
+          backgroundColor:"white",
           padding: 10,
+          alignSelf:"center",
           borderRadius: 15,
           borderColor: "#0F172A",
           borderWidth: 1,
-          gap: 10
+          gap: 10,
         }}
         showsVerticalScrollIndicator={false}
       >
-        <Text style={{ fontSize: 35, fontWeight: "bold", gap: 10, color: "#0f172a" }} >PlastiCorp</Text>
+        <Text
+          style={estilo.titulo}
+        >
+          PlastiCorp
+        </Text>
 
-        <Text style={{ fontSize: 25 }} >
-          O que e PlastiCorp ?
+        <Text style={{ fontSize: 25 }}>O que e PlastiCorp ?</Text>
+        <Text style={{ fontSize: 15 }}>
+          É um aplicativo destinado a o ensinamento aprendizado sobre os
+          microplasticos a suas consequencias etc..
         </Text>
-        <Text style={{ fontSize: 15 }} >
-          É um aplicativo destinado a o ensinamento aprendizado sobre os microplasticos a suas consequencias etc..
-        </Text>
-        <Image source={require("../assets/iconCentral.jpg")} style={{ height: 200, width: 200, left: 25, borderRadius: 10, borderColor: "#0f172a21", borderWidth: 2 }} />
+        <Image
+          source={require("../assets/iconCentral.jpg")}
+          style={{
+            height: 200,
+            width: 200,
+            left: 25,
+            borderRadius: 10,
+            borderColor: "#0f172a21",
+            borderWidth: 2,
+          }}
+        />
 
-        <Text style={{ fontSize: 25 }} >
-          Para que foi criada PlastiCorp ?
+        <Text style={{ fontSize: 25 }}>Para que foi criada PlastiCorp ?</Text>
+        <Text style={{ fontSize: 15 }}>
+          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os
+          perigos e da normalizaçao do consumo deo plastico no corpo humano
         </Text>
-        <Text style={{ fontSize: 15 }} >
-          Com o fim de simplificar a busca e concientiçar o as pessoas sobre os perigos e da normalizaçao do consumo deo plastico no corpo humano
+
+        <Text style={{ fontSize: 20, marginTop: 20 }}>Voce sabe quanto plastico passou pelo seu corpo hoje ?</Text>
+        <Text style={{ fontSize: 15 }}>
+          Se quiser saber pode responde esse questionario.
         </Text>
+        <Link style={estilo.button} href={"calcularPlastico"}>
+          <Text style={{ alignSelf:"center"}} >Aqui</Text>
+        </Link>
       </ScrollView>
     </View>
   );
 }
-{/* <Image
+{
+  /* <Image
         // source={require("../assets/bordes.jpeg")}
         contentFit="cover"
         // style={StyleSheet.absoluteFill}
@@ -61,13 +85,15 @@ export default function Inicio() {
           right: 0,
           bottom: 0
         }}
-      /> */}
-{/* <ImageBackground
+      /> */
+}
+{
+  /* <ImageBackground
         source={require("../assets/bordes.jpeg")}
         resizeMode="cover"
         style={estilo.background}
       >
-      </ImageBackground> 
+      </ImageBackground>
        <View
         style={{
           display: "flex",
@@ -91,5 +117,6 @@ export default function Inicio() {
             bottom: 0,
           }}
         >
-        </Image> 
-      </View>*/}
+        </Image>
+      </View>*/
+}
