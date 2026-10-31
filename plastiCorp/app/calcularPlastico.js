@@ -9,6 +9,12 @@ export default function calcularPlastico() {
   /* Agua de la Torneira	10 - 30 partículas*/
   /* 100 partículas de microplásticos */
   /* Total Diario Estimado	~71,200 partículas */
+  let resultadoPlatico = 0;
+  if () {
+
+  } else {
+
+  }
   const data = [
     { month: "Jan", signups: 180 },
     { month: "Feb", signups: 520 },
@@ -18,8 +24,8 @@ export default function calcularPlastico() {
     { month: "Jun", signups: 860 },
   ];
 
-  const [aguafiltrada, setAguafiltrada] = useState(false);
-  const [aguacomprada, setAguaComprada] = useState(false);
+  const [ aguafiltrada, setAguafiltrada ] = useState(false);
+  const [ aguacomprada, setAguaComprada ] = useState(false);
   return (
     <View
       style={{
