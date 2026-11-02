@@ -13,7 +13,7 @@ let estilo = StyleSheet.create({
   titulo: {
     fontSize: 35,
     fontWeight: "bold",
-    lineHeight:50,
+    lineHeight:30,
     gap: 10,
     color: "#2D3748"
 
@@ -28,7 +28,14 @@ let estilo = StyleSheet.create({
     borderColor:"black"
   },
   subtitle: {
-
+    fontSize: 25,
+    lineHeight:30,
+    color: "#2D3748"
+  },
+  textito: {
+    fontSize: 15,
+    lineHeight:30,
+    color: "#2D3748"
   },
   input: {
     height: 50,

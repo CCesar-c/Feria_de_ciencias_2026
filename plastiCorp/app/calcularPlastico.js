@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { ScrollView, View, TextInput, Text } from "react-native";
 import estilo from "../style/global";
-
-import { PieChart } from "react-native-chart-kit/v2";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import { LineChart, PieChart } from "react-native-chart-kit/v2";
 import Animated, {
   FadeIn,
   FadeOut,
@@ -13,13 +13,16 @@ import Botao from "../components/Botao";
 import ChequeBox from "../components/ChequeBox";
 
 export default function calcularPlastico() {
+  /**
+   * 💳 Un tarjeta de crédito = 5 gramos = 8.680.000.000 partículas de 10 micras
+   */
   /* Agua Embotellada	11,000 - 24,000 partículas  || media - 17500 */
   /* Agua de la Torneira	10 - 30 partículas || media - 20 */
   /* 100 partículas de microplásticos comida || media - 50 */
   /* Total Diario Estimado	~71,200 partículas inhalada   || media -  35600 */
 
   const AnimatedView = createAnimatedComponent(View);
-  const [restPlatico, setRestPlatico] = useState(0);
+  const [restPlatico, setRestPlatico] = useState(10);
   const [fadeIn, setfadeIn] = useState();
 
   const [aguaTorneira, setAguaTorneira] = useState(false);
@@ -28,11 +31,48 @@ export default function calcularPlastico() {
   const [comidaPlastico, setComidaPlastico] = useState(false);
   const [litrosAgua, setLitrosAgua] = useState(false);
 
-  var data = [
-    { month: "Plastico que fica", valor: restPlatico * 0.99 },
-    { month: "Plastico eliminado", valor: restPlatico * 0.01 },
-  ];
+  let restoMinimoPlastico = restPlatico * 0.01;
 
+  var data = [
+    { tipo: "eliminado", valor: restPlatico * 0.99 },
+    { tipo: "fica", valor: restPlatico * 0.01 },
+  ];
+  var dataLine = [
+    { month: "jan", valor: restoMinimoPlastico * 31 },
+    { month: "fev", valor: restoMinimoPlastico * (31 + 28) },
+    { month: "mar", valor: restoMinimoPlastico * (31 + 28 + 31) },
+    { month: "abr", valor: restoMinimoPlastico * (31 + 28 + 31 + 30) },
+    { month: "maio", valor: restoMinimoPlastico * (31 + 28 + 31 + 30 + 31) },
+    {
+      month: "jun",
+      valor: restoMinimoPlastico * (31 + 28 + 31 + 30 + 31 + 30),
+    },
+    {
+      month: "jul",
+      valor: restoMinimoPlastico * (31 + 28 + 31 + 30 + 31 + 30 + 31),
+    },
+    {
+      month: "ago",
+      valor: restoMinimoPlastico * (31 + 28 + 31 + 30 + 31 + 30 + 31 + 31),
+    },
+    {
+      month: "set",
+      valor: restoMinimoPlastico * (31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30),
+    },
+    {
+      month: "out",
+      valor:
+        restoMinimoPlastico * (31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31),
+    },
+    {
+      month: "nov",
+      valor:
+        restoMinimoPlastico *
+        (31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30),
+    },
+    { month: "dez", valor: restoMinimoPlastico * 365 }, // Total de días del año
+  ];
+  let quantidade_cartoes_dia = (restoMinimoPlastico / 8680000000) * 100;
   return (
     <View
       style={{
@@ -64,7 +104,7 @@ export default function calcularPlastico() {
             estilo.card,
           ]}
         >
-          <Text style={estilo.titulo}>Calculo de plastico</Text>
+          <Text style={estilo.titulo}>Calculo de plastico Diario</Text>
           <TextInput
             style={estilo.input}
             placeholder="Quantos litros de agua tomou hoje?"
@@ -88,7 +128,10 @@ export default function calcularPlastico() {
             onChangeText={(e) => setComidaPlastico(Number(e))}
           />
           <Botao
-            style={{ alignSelf: "center" }}
+            style={{
+              alignSelf: "center",
+              backgroundColor: "#0088CC",
+            }}
             children={"fazer o calculo"}
             onPress={() => {
               if (aguaTorneira != 0) {
@@ -97,46 +140,113 @@ export default function calcularPlastico() {
                 setRestPlatico(
                   litrosAgua * 17500 + comidaPlastico * 50 + 35600,
                 );
+              } else if (aguaComprada != 0 && aguaTorneira != 0) {
+                setRestPlatico(
+                  litrosAgua * 17520 + comidaPlastico * 50 + 35600,
+                );
               }
-              if (restPlatico == 0) {
-                setfadeIn(FadeIn.duration(300));
-                setTimeout(() => setRestPlatico(1), 500);
-              } else {
-                setRestPlatico(0);
-              }
+              setfadeIn(FadeIn.duration(300));
             }}
           />
         </View>
         {restPlatico != 0 ? (
           <AnimatedView
             entering={fadeIn}
-            style={{
-              minHeight: "100%",
-              width: "100%",
-              alignItems: "cnter",
-              flexDirection: "column",
-              rowGap: 10,
-            }}
+            style={[
+              estilo.card,
+              {
+                minHeight: "100%",
+                width: "90%",
+                alignItems: "center",
+                flexDirection: "column",
+                backgroundColor: "white",
+                alignSelf: "center",
+                rowGap: 10,
+                borderWidth: 5,
+                borderColor: "rgba(0,0,0,0.09)",
+              },
+            ]}
           >
             <Text
-              style={{
-                alignSelf: "center",
-                textAlign: "center",
-                overflow: "scroll",
-              }}
-            >
-              {`Sua Quantidade de plastico que ja passou hoje no seu corpo ...\n ${restPlatico}`}
-            </Text>
-            <PieChart
-              data={[
-                { month: "Plastico que fica", valor: restPlatico * 0.99 },
-                { month: "Plastico eliminado", valor: restPlatico * 0.01 },
+              style={[
+                estilo.subtitle,
+                {
+                  alignSelf: "center",
+                  textAlign: "center",
+                  margin: 5,
+                  color: "#2D3748",
+                  backgroundColor: "white",
+                },
               ]}
-              labelKey="month"
-              valueKey="valor"
-              width={410}
-              height={240}
-            />
+            >
+              Total de microplasticos que passarão seu corpo:
+              <Text> {restPlatico}</Text>
+            </Text>
+            <Text style={[estilo.textito, { alignSelf: "baseline", left: 15 }]}>
+              Quantidade de plastico por dia
+            </Text>
+            <View style={{ borderRadius: 10, borderWidth: 1 }}>
+              <PieChart
+                data={data}
+                labelKey="tipo"
+                valueKey="valor"
+                legend={true}
+                selectedIndex={0}
+                colors={["orange", "red"]}
+                arcLabels={{
+                  minPercentage: 0,
+                  reservedWidth: 100,
+                  formatLabel: ({ label, valueLabel }) =>
+                    `${label}: ${valueLabel}`,
+                }}
+                height={300}
+                width={380}
+              />
+            </View>
+            <Text style={[estilo.textito, { alignSelf: "baseline", left: 15 }]}>
+              Quantidade de plastico por mes do que sobrou
+            </Text>
+
+            <View style={{ borderRadius: 10, borderWidth: 1 }}>
+              <LineChart
+                data={dataLine}
+                scrollable
+                interaction={{
+                  mode: "scrub",
+                  selectionPersistence: "whileActive",
+                }}
+                tooltip={{
+                  shared: true,
+                  anchor: "point",
+                  placement: "above",
+                  offset: 18,
+                  positionAnimationDuration: 320,
+                }}
+                crosshair
+                visiblePoints={7}
+                yAxisLabelWidth={"stable"}
+                xKey="month"
+                yKey="valor"
+                height={300}
+                width={380}
+              />
+            </View>
+            <View style={{ borderRadius: 10, borderWidth: 1 }}>
+              <AntDesign
+                name="credit-card"
+                size={200}
+                color="black"
+                style={{ alignSelf: "center" }}
+              />
+              <Text>
+                Quantidades de cartões de credito que consegue ser feito con o
+                plastico do seu corpo por
+                {"\n- Dia: " + quantidade_cartoes_dia.toPrecision(1)}
+                {"\n- Mes: " + quantidade_cartoes_dia.toPrecision(1) * 30}
+                {"\n- ano: " + quantidade_cartoes_dia.toPrecision(1) * 365}
+                {"\n- 10 anos: " + quantidade_cartoes_dia.toPrecision(1) * 3650}
+              </Text>
+            </View>
           </AnimatedView>
         ) : null}
       </ScrollView>

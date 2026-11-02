@@ -65,7 +65,7 @@ export default function Inicio() {
         <Text style={{ fontSize: 15 }}>
           Se quiser saber pode responde esse questionario.
         </Text>
-        <Link style={[estilo.button, {height:20}]} href={"calcularPlastico"}>
+        <Link style={[estilo.button, { height:20 }]} href={"calcularPlastico"}>
           <Text style={{ alignSelf:"center"}} >Aqui</Text>
         </Link>
       </ScrollView>
