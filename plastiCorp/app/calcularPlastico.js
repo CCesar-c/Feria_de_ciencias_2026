@@ -22,7 +22,7 @@ export default function calcularPlastico() {
   /* Total Diario Estimado	~71,200 partículas inhalada   || media -  35600 */
 
   const AnimatedView = createAnimatedComponent(View);
-  const [restPlatico, setRestPlatico] = useState(10);
+  const [restPlatico, setRestPlatico] = useState(0);
   const [fadeIn, setfadeIn] = useState();
 
   const [aguaTorneira, setAguaTorneira] = useState(false);
