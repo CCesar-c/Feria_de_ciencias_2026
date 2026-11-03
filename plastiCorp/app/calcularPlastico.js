@@ -87,8 +87,8 @@ export default function calcularPlastico() {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
-          minHeight: "strech",
-          width: "strech",
+          minHeight: "stretch",
+          width: "stretch",
         }}
       >
         <View
