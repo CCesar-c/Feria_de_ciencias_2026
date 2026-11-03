@@ -24,7 +24,6 @@ export default function Gemini() {
   }
   const [pergunta, setPergunta] = useState("");
   const [resposta, setResposta] = useState([
-    "si",
     "El plástico es un material sintético o semisintético ",
   ]);
 

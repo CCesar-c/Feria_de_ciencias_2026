@@ -8,12 +8,12 @@ let estilo = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     height: '100vh',
-    width: '100vw', 
+    width: '100vw',
   },
   titulo: {
     fontSize: 35,
     fontWeight: "bold",
-    lineHeight:30,
+    lineHeight: 30,
     gap: 10,
     color: "#2D3748"
 
@@ -22,19 +22,19 @@ let estilo = StyleSheet.create({
     height: 50,
     width: 100,
     textAlign: "center",
-    borderRadius:10,
+    borderRadius: 10,
     backgroundColor: "aliceblue",
     borderWidth: 1,
-    borderColor:"black"
+    borderColor: "black"
   },
   subtitle: {
     fontSize: 25,
-    lineHeight:30,
+    lineHeight: 30,
     color: "#2D3748"
   },
   textito: {
     fontSize: 15,
-    lineHeight:30,
+    lineHeight: 30,
     color: "#2D3748"
   },
   input: {
@@ -47,7 +47,7 @@ let estilo = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "black",
-    backgroundColor:"white"
+    backgroundColor: "white"
   }
 
 });
