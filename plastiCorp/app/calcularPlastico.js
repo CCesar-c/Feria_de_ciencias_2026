@@ -200,7 +200,7 @@ export default function calcularPlastico() {
                     `${label}: ${valueLabel}`,
                 }}
                 height={300}
-                width={380}
+                width={350}
               />
             </View>
             <Text style={[estilo.textito, { alignSelf: "baseline", left: 15 }]}>
@@ -228,19 +228,26 @@ export default function calcularPlastico() {
                 xKey="month"
                 yKey="valor"
                 height={300}
-                width={380}
+                width={350}
               />
             </View>
-            <View style={{ borderRadius: 10, borderWidth: 1 }}>
+            <View
+              style={{
+                borderRadius: 10,
+                borderWidth: 1,
+                height: 300,
+                width: 350,
+              }}
+            >
               <AntDesign
                 name="credit-card"
-                size={200}
                 color="black"
-                style={{ alignSelf: "center" }}
+                size={150}
+                style={{ alignSelf: "center"}}
               />
               <Text>
                 Quantidades de cartões de credito que consegue ser feito con o
-                plastico do seu corpo por
+                plastico do seu corpo em:
                 {"\n- Dia: " + quantidade_cartoes_dia.toPrecision(3) + "%"}
                 {"\n- Mes: " + quantidade_cartoes_dia.toPrecision(3) * 30 + "%"}
                 {"\n- ano: " +
