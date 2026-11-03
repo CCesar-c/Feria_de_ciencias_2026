@@ -8,7 +8,7 @@ let estilo = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     height: '100vh',
-    width: '100vw',
+    width: '100vw', 
   },
   titulo: {
     fontSize: 35,
