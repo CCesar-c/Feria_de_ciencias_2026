@@ -70,7 +70,7 @@ export default function calcularPlastico() {
         restoMinimoPlastico *
         (31 + 28 + 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30),
     },
-    { month: "dez", valor: restoMinimoPlastico * 365 }, // Total de días del año
+    { month: "dez", valor: restoMinimoPlastico * 365 },
   ];
   let quantidade_cartoes_dia = (restoMinimoPlastico / 8680000000) * 100;
   return (
@@ -241,10 +241,17 @@ export default function calcularPlastico() {
               <Text>
                 Quantidades de cartões de credito que consegue ser feito con o
                 plastico do seu corpo por
-                {"\n- Dia: " + quantidade_cartoes_dia.toPrecision(1)}
-                {"\n- Mes: " + quantidade_cartoes_dia.toPrecision(1) * 30}
-                {"\n- ano: " + quantidade_cartoes_dia.toPrecision(1) * 365}
-                {"\n- 10 anos: " + quantidade_cartoes_dia.toPrecision(1) * 3650}
+                {"\n- Dia: " + quantidade_cartoes_dia.toPrecision(3) + "%"}
+                {"\n- Mes: " + quantidade_cartoes_dia.toPrecision(3) * 30 + "%"}
+                {"\n- ano: " +
+                  quantidade_cartoes_dia.toPrecision(3) * 365 +
+                  "%"}
+                {"\n- 10 anos: " +
+                  quantidade_cartoes_dia.toPrecision(3) * 3650 +
+                  "%"}
+                {"\n- 50 anos: " +
+                  quantidade_cartoes_dia.toPrecision(3) * (3650 * 5) +
+                  "%"}
               </Text>
             </View>
           </AnimatedView>
