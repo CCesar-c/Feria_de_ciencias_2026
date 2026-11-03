@@ -134,18 +134,19 @@ export default function calcularPlastico() {
             }}
             children={"fazer o calculo"}
             onPress={() => {
-              if (aguaTorneira != 0) {
-                setRestPlatico(litrosAgua * 20 + comidaPlastico * 50 + 35600);
-              } else if (aguaComprada != 0) {
-                setRestPlatico(
-                  litrosAgua * 17500 + comidaPlastico * 50 + 35600,
-                );
-              } else if (aguaComprada != 0 && aguaTorneira != 0) {
+              if (aguaComprada && aguaTorneira) {
                 setRestPlatico(
                   litrosAgua * 17520 + comidaPlastico * 50 + 35600,
                 );
+              } else if (aguaTorneira) {
+                setRestPlatico(litrosAgua * 20 + comidaPlastico * 50 + 35600);
+              } else if (aguaComprada) {
+                setRestPlatico(
+                  litrosAgua * 17500 + comidaPlastico * 50 + 35600,
+                );
               }
               setfadeIn(FadeIn.duration(300));
+              console.log(restPlatico);
             }}
           />
         </View>
@@ -243,7 +244,7 @@ export default function calcularPlastico() {
                 name="credit-card"
                 color="black"
                 size={150}
-                style={{ alignSelf: "center"}}
+                style={{ alignSelf: "center" }}
               />
               <Text>
                 Quantidades de cartões de credito que consegue ser feito con o
