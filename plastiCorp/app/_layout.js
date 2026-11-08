@@ -1,8 +1,6 @@
-import { Tabs, router } from "expo-router";
-import AntDesign from "@expo/vector-icons/AntDesign";
+import { Tabs } from "expo-router";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import estilo from "../style/global.js";
 import { Image } from "expo-image";
 import { Entypo } from "@expo/vector-icons";
 

@@ -23,6 +23,20 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": ["expo-router", "expo-status-bar", "expo-image"]
+    "plugins": [
+      "expo-router",
+      "expo-status-bar",
+      "expo-image"
+    ],
+    "extra": {
+      "router": {
+        "asyncRoutes": {
+          "web": true
+        }
+      },
+      "eas": {
+        "projectId": "47bd7262-d5d1-4049-a777-5c51ab1b4d9c"
+      }
+    }
   }
 }
