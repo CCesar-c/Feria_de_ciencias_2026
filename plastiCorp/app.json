@@ -6,7 +6,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/iconCentral.jpg",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.cesar-colmenarez.plastiCorp"
@@ -14,7 +14,11 @@
     "android": {
       "package": "com.cesar_colmenarez.plastiCorp"
     },
-    "plugins": ["expo-router", "expo-status-bar", "expo-image"],
+    "plugins": [
+      "expo-router",
+      "expo-status-bar",
+      "expo-image"
+    ],
     "extra": {
       "router": {
         "asyncRoutes": {
@@ -24,6 +28,12 @@
       "eas": {
         "projectId": "47bd7262-d5d1-4049-a777-5c51ab1b4d9c"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/47bd7262-d5d1-4049-a777-5c51ab1b4d9c"
     }
   }
 }
