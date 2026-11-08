@@ -18,13 +18,12 @@ export default function Layout() {
         headerShown: true,
         headerLeft: () => (
           <Image
-            source={require("../assets/iconCentral.jpg")}
+            source={require("../assets/icon.png")}
             contentFit="cover"
             style={{
-              height: 25,
-              width: 25,
+              height: 40,
+              width: 40,
               borderRadius: 100,
-              marginRight: 5,
             }}
           />
         ),
@@ -36,15 +35,10 @@ export default function Layout() {
           tabBarStyle: {
             backgroundColor: "#0F172A",
           },
-          headerStyle: {
-            backgroundColor: "#0F172A",
-          },
           title: "Inicio",
-          headerTintColor: "white",
-          tabBarActiveTintColor: "white",
+          headerShown:false,
+          tabBarActiveTintColor: "#57bb99",
           tabBarInactiveTintColor: "#94A3B8",
-          headerShadowVisible: false,
-          headerTitle: "PlastiCorp",
           tabBarIcon: ({ color }) => (
             <FontAwesome6 name="house" size={20} color={color} />
           ),
@@ -58,15 +52,18 @@ export default function Layout() {
           },
           headerStyle: {
             backgroundColor: "#0F172A",
+            shadowColor:"red",
+            elevation:20
           },
 
           title: "Chat",
           headerTintColor: "white",
           headerTitle: "Chat Integrado",
-          tabBarActiveTintColor: "white",
+
+          tabBarActiveTintColor: "#57bb99",
           tabBarInactiveTintColor: "#94A3B8",
 
-          headerShadowVisible: false,
+          headerShadowVisible: true,
           tabBarIcon: ({ color }) => (
             <Entypo name="chat" size={20} color={color} />
           ),
@@ -84,7 +81,7 @@ export default function Layout() {
           title: "calcularPlastico",
           headerTintColor: "white",
           headerTitle: "calcularPlastico",
-          tabBarActiveTintColor: "white",
+          tabBarActiveTintColor: "#57bb99",
           tabBarInactiveTintColor: "#94A3B8",
 
           headerShadowVisible: false,

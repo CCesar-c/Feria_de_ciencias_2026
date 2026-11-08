@@ -1,31 +1,26 @@
 import { GoogleGenAI } from "@google/genai";
 
 import { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import estilo from "../style/global";
+import ContainerGradient from "../simple_code/ContainerGradient";
+import Input from "../components/Input";
+import Botao from "../components/Botao";
 
 const ai = new GoogleGenAI({
-  apiKey:
-    process.env.EXPO_PUBLIC_Gemini_key ||
-    "AQ.Ab8RN6KfXk97t3C2L7q1i4R0k_v8guQ8qqJeDnUlYzve-wcHug",
+  apiKey: process.env.EXPO_PUBLIC_Gemini_key || "any",
 });
 
 export default function Gemini() {
   function DataAhora() {
-    let dataNow = new Date()
-    return `${dataNow.getHours()}:${dataNow.getMinutes()}:${dataNow.getSeconds()} - ${dataNow.getMilliseconds()} `
+    let dataNow = new Date();
+    return `${dataNow.getHours()}:${dataNow.getMinutes()}:${dataNow.getSeconds()} - ${dataNow.getMilliseconds()} `;
   }
   const [pergunta, setPergunta] = useState("");
   const [resposta, setResposta] = useState([
     "El plástico es un material sintético o semisintético ",
   ]);
+  const [escrevendo, setEscrevendo] = useState(false);
 
   async function askgemini() {
     alert("executou");
@@ -48,20 +43,11 @@ export default function Gemini() {
   }
 
   return (
-    <View
-      style={{
-        flex: 1,
-        flexDirection: "column",
-        boxSizing: "border-box",
-        alignItems: "center",
-        minHeight: "100vh",
-        width: "100vw",
-      }}
-    >
+    <ContainerGradient>
       <ScrollView
         contentContainerStyle={{
           gap: 10,
-          padding:10
+          padding: 10,
         }}
       >
         {resposta
@@ -76,13 +62,14 @@ export default function Gemini() {
                     borderColor: "rgba(128,128,128,0.5)",
                     padding: 10,
                     borderRadius: 10,
+                    boxShadow:"0px 0px 5px 0.1px white",
                   }}
                 >
                   <Text style={{ fontWeight: "bold", marginBottom: 5 }}>
                     Resposta do Professor:
                   </Text>
                   <Text>{rp}</Text>
-                  <Text style={{ alignSelf:"flex-end" }} >{DataAhora()}</Text>
+                  <Text style={{ alignSelf: "flex-end" }}>{DataAhora()}</Text>
                 </View>
               );
             })
@@ -90,51 +77,53 @@ export default function Gemini() {
       </ScrollView>
       <View
         style={{
-          borderColor: "black",
-          borderWidth: 0.2,
+          boxShadow:"0px 0px 1px 0.1px white",
           flex: 1,
-          bottom: 25,
+          bottom: escrevendo == true ? "50vh" : 25, // esto cambia de 25 a 50% de la pantalla para que se pueda ver
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
           gap: 10,
           position: "absolute",
-          backgroundColor: "white",
+          backgroundColor: "rgba(21, 77, 89, 1.0)",
           height: 75,
           width: 300,
           borderRadius: 50,
         }}
       >
-        <TextInput
+        <Input
           placeholder="escreva sua pergunta aqui"
-          onChangeText={(t) => setPergunta(t)}
           value={pergunta}
           style={{
-            borderWidth: 1,
-            borderColor: "#ccc",
-            borderRadius: 5,
-            height: "strech",
-            width:"strech"
+            height: "80%",
+            width: "70%",
+            borderWidth: 0,
           }}
+          onFocus={() => {
+            setEscrevendo(true);
+          }}
+          onBlur={() => {
+            setEscrevendo(false);
+          }}
+          onChangeText={(t) => setPergunta(t)}
         />
-        <TouchableOpacity
+        <Botao
+          style={{
+            height: 50,
+            width: 50,
+            backgroundColor: "rgba(0, 255, 136, 1.0)",
+            padding: 10,
+            borderRadius: 100,
+          }}
           onPress={() => {
             askgemini();
           }}
-        >
-          <AntDesign
-            name="arrow-up"
-            size={24}
-            color="white"
-            style={{
-              backgroundColor: "#0088CC",
-              padding: 10,
-              borderRadius: 100,
-            }}
-          />
-        </TouchableOpacity>
+          children={
+            <AntDesign name="arrow-up" size={24} color="rgba(2, 89, 48, 1.0)" />
+          }
+        />
       </View>
-    </View>
+    </ContainerGradient>
   );
 }

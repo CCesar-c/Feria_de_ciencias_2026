@@ -3,14 +3,15 @@ import { ScrollView, View, TextInput, Text } from "react-native";
 import estilo from "../style/global";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { LineChart, PieChart } from "react-native-chart-kit/v2";
-import Animated, {
+import {
   FadeIn,
-  FadeOut,
   ReducedMotionConfig,
   createAnimatedComponent,
 } from "react-native-reanimated";
 import Botao from "../components/Botao";
 import ChequeBox from "../components/ChequeBox";
+import ContainerGradient from "../simple_code/ContainerGradient";
+import Input from "../components/Input";
 
 export default function calcularPlastico() {
   /**
@@ -74,23 +75,10 @@ export default function calcularPlastico() {
   ];
   let quantidade_cartoes_dia = (restoMinimoPlastico / 8680000000) * 100;
   return (
-    <View
-      style={{
-        minHeight: "100vh",
-        width: "100vw",
-        boxSizing: "border-box",
-        alignItems: "center",
-        flexDirection: "column",
-      }}
-    >
+    <ContainerGradient>
       <ReducedMotionConfig mode="never" />
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          minHeight: "stretch",
-          width: "stretch",
-        }}
-      >
+
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View
           style={[
             {
@@ -104,10 +92,10 @@ export default function calcularPlastico() {
             estilo.card,
           ]}
         >
-          <Text style={estilo.titulo}>Calculo de plastico Diario</Text>
-          <TextInput
-            style={estilo.input}
+          <Text style={estilo.titulo}>Calculo de Plastico Diario</Text>
+          <Input
             placeholder="Quantos litros de agua tomou hoje?"
+            placeholderTextColor={"rgba(174, 196, 191, 0.45)"}
             keyboardType="numeric"
             onChangeText={(e) => setLitrosAgua(Number(e))}
           />
@@ -121,18 +109,18 @@ export default function calcularPlastico() {
             value={aguaComprada}
             onValueChange={setAguaComprada}
           />
-          <TextInput
-            style={estilo.input}
+          <Input
             placeholder="Quantas vezes comeu hoje?"
+            value={comidaPlastico}
+            placeholderTextColor={"rgba(174, 196, 191, 0.45)"}
             keyboardType="numeric"
             onChangeText={(e) => setComidaPlastico(Number(e))}
           />
           <Botao
             style={{
               alignSelf: "center",
-              backgroundColor: "#0088CC",
             }}
-            children={"fazer o calculo"}
+            children={"Fazer o calculo"}
             onPress={() => {
               if (aguaComprada && aguaTorneira) {
                 setRestPlatico(
@@ -265,6 +253,6 @@ export default function calcularPlastico() {
           </AnimatedView>
         ) : null}
       </ScrollView>
-    </View>
+    </ContainerGradient>
   );
 }
