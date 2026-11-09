@@ -1,7 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 
 import { useState } from "react";
-import { View, Text, ScrollView, Keyboard } from "react-native";
+import { View, Text, ScrollView, Keyboard, Image } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import ContainerGradient from "../simple_code/ContainerGradient";
 import Input from "../components/Input";
@@ -58,34 +58,54 @@ export default function Gemini() {
                 <View
                   key={i}
                   style={{
+                    flex: 1,
+                    alignItems: "center",
                     borderRadius: 0,
-                    backgroundColor: "rgba(20, 23, 40, 1.0)",
+                    backgroundColor: "rgba(20, 33, 120, 1.0)",
                     padding: 0,
-                    borderWidth: 2.5,
                     borderTopStartRadius: 30,
                     borderTopEndRadius: 30,
                     borderEndEndRadius: 30,
-                    boxShadow: "0px 0px 10px 5px rgba(106, 217, 165, 1.0)",
+                    borderWidth: 3.5,
+                    boxSizing: "border-box",
+                    borderColor: "rgba(106, 217, 165, 1.0)",
+                    boxShadow: "0px 0px 10px 0px rgba(106, 217, 165, 1.0)",
                   }}
                 >
                   <View
                     style={{
+                      flex: 1,
+                      alignSelf: "center",
+                      boxSizing: "border-box",
+                      top: -3,
                       backgroundColor: "white",
-                      width: "100%",
-                      height:"35%",
+                      width: "100.4%",
+                      height: "38%",
                       padding: 5,
-                      borderTopStartRadius: 20,
-                      borderTopEndRadius: 20,
+                      borderTopStartRadius: 30,
+                      borderTopEndRadius: 30,
+                      flexDirection: "row",
                     }}
                   >
+                    <Image
+                      source={require("../assets/icon.png")}
+                      style={{
+                        height: 35,
+                        width: 35,
+                        borderRadius: 1000,
+                        left: 10,
+                      }}
+                    />
                     <Text
                       style={[
                         estilo.titulo,
                         {
+                          alignSelf: "center",
+                          left: 12,
                           fontWeight: "bold",
                           fontSize: 20,
                           lineHeight: 20,
-                          color: "rgba(106, 217, 165, 1.0)",
+                          color: "rgba(106, 217, 125, 1.0)",
                         },
                       ]}
                     >
@@ -93,7 +113,14 @@ export default function Gemini() {
                     </Text>
                   </View>
                   <Text style={estilo.textito}>{rp}</Text>
-                  <Text style={{ alignSelf: "flex-end" }}>{DataAhora()}</Text>
+                  <Text
+                    style={[
+                      estilo.textito,
+                      { alignSelf: "flex-end", right: 10 },
+                    ]}
+                  >
+                    {DataAhora()}
+                  </Text>
                 </View>
               );
             })
