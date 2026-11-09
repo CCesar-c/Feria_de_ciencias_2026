@@ -62,7 +62,7 @@ export default function Gemini() {
                     alignItems: "center",
                     borderRadius: 0,
                     backgroundColor: "rgba(20, 33, 120, 1.0)",
-                    padding: 0,
+
                     borderTopStartRadius: 30,
                     borderTopEndRadius: 30,
                     borderEndEndRadius: 30,
@@ -112,11 +112,23 @@ export default function Gemini() {
                       Especialista IA:
                     </Text>
                   </View>
-                  <Text style={estilo.textito}>{rp}</Text>
                   <Text
                     style={[
                       estilo.textito,
-                      { alignSelf: "flex-end", right: 10 },
+                      {
+                        maxWidth: "90%",
+                        lineHeight: 15,
+                        alignSelf: "center",
+                        overflow: "scroll",
+                      },
+                    ]}
+                  >
+                    {rp}
+                  </Text>
+                  <Text
+                    style={[
+                      estilo.textito,
+                      { alignSelf: "flex-end", right: 10, bottom: 10 },
                     ]}
                   >
                     {DataAhora()}
