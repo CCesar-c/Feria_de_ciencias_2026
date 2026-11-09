@@ -1,5 +1,5 @@
 import { Tabs } from "expo-router";
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Image } from "expo-image";
 import { Entypo } from "@expo/vector-icons";
@@ -40,7 +40,7 @@ export default function Layout() {
           tabBarActiveTintColor: "#57bb99",
           tabBarInactiveTintColor: "#94A3B8",
           tabBarIcon: ({ color }) => (
-            <FontAwesome6 name="house" size={20} color={color} />
+            <FontAwesome5 name="calculator" size={24} color="black" />
           ),
         }}
       />
@@ -76,9 +76,9 @@ export default function Layout() {
           headerStyle: {
             backgroundColor: "#0F172A",
           },
-          title: "calcularPlastico",
+          title: "calcular",
           headerTintColor: "white",
-          headerTitle: "calcularPlastico",
+          headerTitle: "calcular",
           tabBarActiveTintColor: "#57bb99",
           tabBarInactiveTintColor: "#94A3B8",
           headerShadowVisible: false,
