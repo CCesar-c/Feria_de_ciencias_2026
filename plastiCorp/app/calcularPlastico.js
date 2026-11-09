@@ -82,6 +82,7 @@ export default function calcularPlastico() {
         <View
           style={[
             {
+              boxShadow: "0px 0px 10px 0.1px black",
               alignSelf: "center",
               borderColor: "black",
               borderWidth: 1,

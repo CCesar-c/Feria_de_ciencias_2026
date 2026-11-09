@@ -1,17 +1,20 @@
 import { GoogleGenAI } from "@google/genai";
 
 import { useState } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, Keyboard } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import ContainerGradient from "../simple_code/ContainerGradient";
 import Input from "../components/Input";
 import Botao from "../components/Botao";
+import estilo from "../style/global";
 
 const ai = new GoogleGenAI({
   apiKey: process.env.EXPO_PUBLIC_Gemini_key || "any",
 });
 
 export default function Gemini() {
+  Keyboard.addListener("keyboardDidShow", () => setEscrevendo(true));
+  Keyboard.addListener("keyboardDidHide", () => setEscrevendo(false));
   function DataAhora() {
     let dataNow = new Date();
     return `${dataNow.getHours()}:${dataNow.getMinutes()}:${dataNow.getSeconds()} - ${dataNow.getMilliseconds()} `;
@@ -46,7 +49,6 @@ export default function Gemini() {
     <ContainerGradient>
       <ScrollView
         contentContainerStyle={{
-          gap: 10,
           padding: 10,
         }}
       >
@@ -56,19 +58,41 @@ export default function Gemini() {
                 <View
                   key={i}
                   style={{
-                    backgroundColor: "#f0f0f0",
-                    borderRadius: 5,
+                    borderRadius: 0,
+                    backgroundColor: "rgba(20, 23, 40, 1.0)",
+                    padding: 0,
                     borderWidth: 2.5,
-                    borderColor: "rgba(128,128,128,0.5)",
-                    padding: 10,
-                    borderRadius: 10,
-                    boxShadow:"0px 0px 5px 0.1px white",
+                    borderTopStartRadius: 30,
+                    borderTopEndRadius: 30,
+                    borderEndEndRadius: 30,
+                    boxShadow: "0px 0px 10px 5px rgba(106, 217, 165, 1.0)",
                   }}
                 >
-                  <Text style={{ fontWeight: "bold", marginBottom: 5 }}>
-                    Resposta do Professor:
-                  </Text>
-                  <Text>{rp}</Text>
+                  <View
+                    style={{
+                      backgroundColor: "white",
+                      width: "100%",
+                      height:"35%",
+                      padding: 5,
+                      borderTopStartRadius: 20,
+                      borderTopEndRadius: 20,
+                    }}
+                  >
+                    <Text
+                      style={[
+                        estilo.titulo,
+                        {
+                          fontWeight: "bold",
+                          fontSize: 20,
+                          lineHeight: 20,
+                          color: "rgba(106, 217, 165, 1.0)",
+                        },
+                      ]}
+                    >
+                      Especialista IA:
+                    </Text>
+                  </View>
+                  <Text style={estilo.textito}>{rp}</Text>
                   <Text style={{ alignSelf: "flex-end" }}>{DataAhora()}</Text>
                 </View>
               );
@@ -77,9 +101,9 @@ export default function Gemini() {
       </ScrollView>
       <View
         style={{
-          boxShadow:"0px 0px 1px 0.1px white",
+          boxShadow: "0px 0px 5px 0.1px white",
           flex: 1,
-          bottom: escrevendo == true ? "50vh" : 25, // esto cambia de 25 a 50% de la pantalla para que se pueda ver
+          bottom: escrevendo == true ? "39%" : "2%", // esto cambia de 25 a 50% de la pantalla para que se pueda ver
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
@@ -88,7 +112,7 @@ export default function Gemini() {
           position: "absolute",
           backgroundColor: "rgba(21, 77, 89, 1.0)",
           height: 75,
-          width: 300,
+          width: 350,
           borderRadius: 50,
         }}
       >
@@ -96,15 +120,9 @@ export default function Gemini() {
           placeholder="escreva sua pergunta aqui"
           value={pergunta}
           style={{
-            height: "80%",
+            height: "90%",
             width: "70%",
             borderWidth: 0,
-          }}
-          onFocus={() => {
-            setEscrevendo(true);
-          }}
-          onBlur={() => {
-            setEscrevendo(false);
           }}
           onChangeText={(t) => setPergunta(t)}
         />

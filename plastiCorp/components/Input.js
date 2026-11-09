@@ -1,7 +1,6 @@
-import { TextInput } from "react-native";
+import {  TextInput } from "react-native";
 import estilo from "../style/global";
 import { useState } from "react";
-
 /**
  * @param {import('react-native').TextInputProps & { style?: import('react-native').StyleProp<import('react-native').TextStyle> }} props
  */
@@ -15,6 +14,7 @@ export default function Input({
   ...rest
 }) {
   const [escrevendo, setEscrevendo] = useState(false);
+
   return (
     <TextInput
       multiline
@@ -26,6 +26,7 @@ export default function Input({
         setEscrevendo(false);
         onBlur ? onBlur() : null;
       }}
+
       style={[
         estilo.input,
         {

@@ -36,7 +36,7 @@ export default function Layout() {
             backgroundColor: "#0F172A",
           },
           title: "Inicio",
-          headerShown:false,
+          headerShown: false,
           tabBarActiveTintColor: "#57bb99",
           tabBarInactiveTintColor: "#94A3B8",
           tabBarIcon: ({ color }) => (
@@ -52,8 +52,6 @@ export default function Layout() {
           },
           headerStyle: {
             backgroundColor: "#0F172A",
-            shadowColor:"red",
-            elevation:20
           },
 
           title: "Chat",
@@ -83,7 +81,6 @@ export default function Layout() {
           headerTitle: "calcularPlastico",
           tabBarActiveTintColor: "#57bb99",
           tabBarInactiveTintColor: "#94A3B8",
-
           headerShadowVisible: false,
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
