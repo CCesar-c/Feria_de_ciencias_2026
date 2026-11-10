@@ -9,7 +9,7 @@ import Botao from "../components/Botao";
 import estilo from "../style/global";
 
 const ai = new GoogleGenAI({
-  apiKey: process.env.EXPO_PUBLIC_Gemini_key || "any",
+  apiKey: process.env.EXPO_PUBLIC_Gemini_key || "",
 });
 
 export default function Gemini() {
