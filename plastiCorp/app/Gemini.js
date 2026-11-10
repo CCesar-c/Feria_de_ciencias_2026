@@ -29,6 +29,9 @@ export default function Gemini() {
         model: "gemini-3.5-flash-lite",
         contents: [pergunta],
         config: {
+          thinkingConfig: {
+            thinkingLevel:"MINIMAL"
+          },
           systemInstruction:
             "Tu vas a ser un Tipo de professor que explicara de forma simple y concisa sobre: residuos, reciclaje y microplasticos",
         },
