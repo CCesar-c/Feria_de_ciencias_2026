@@ -20,25 +20,25 @@ export default function Gemini() {
     return `${dataNow.getHours()}:${dataNow.getMinutes()}:${dataNow.getSeconds()} - ${dataNow.getMilliseconds()} `;
   }
   const [pergunta, setPergunta] = useState("");
-  const [resposta, setResposta] = useState([
-    "El plástico es un material sintético o semisintético ",
-  ]);
+  const [resposta, setResposta] = useState([{text:"Ola, como eu posso te ajudar", date:"now"}]);
   const [escrevendo, setEscrevendo] = useState(false);
 
   async function askgemini() {
-    alert("executou");
     try {
       const respons = await ai.models.generateContent({
-        model: "gemini-3.8-flash",
+        model: "gemini-3.5-flash-lite",
         contents: [pergunta],
         config: {
           systemInstruction:
             "Tu vas a ser un Tipo de professor que explicara de forma simple y concisa sobre: residuos, reciclaje y microplasticos",
         },
       });
+      console.log(respons);
 
       if (respons && respons.text) {
-        setResposta([...resposta, respons.text]);
+        setResposta([...resposta, respons]);
+
+        setPergunta("");
       }
     } catch (error) {
       console.error("Erro ao chamar o Gemini:", error);
@@ -49,7 +49,9 @@ export default function Gemini() {
     <ContainerGradient>
       <ScrollView
         contentContainerStyle={{
+          alignItems: "baseline",
           padding: 10,
+          gap: 10,
         }}
       >
         {resposta
@@ -62,7 +64,6 @@ export default function Gemini() {
                     alignItems: "center",
                     borderRadius: 0,
                     backgroundColor: "rgba(20, 33, 120, 1.0)",
-
                     borderTopStartRadius: 30,
                     borderTopEndRadius: 30,
                     borderEndEndRadius: 30,
@@ -79,8 +80,8 @@ export default function Gemini() {
                       boxSizing: "border-box",
                       top: -3,
                       backgroundColor: "white",
-                      width: "100.4%",
-                      height: "38%",
+                      minWidth: "50%",
+                      width:"100vw",
                       padding: 5,
                       borderTopStartRadius: 30,
                       borderTopEndRadius: 30,
@@ -116,14 +117,14 @@ export default function Gemini() {
                     style={[
                       estilo.textito,
                       {
-                        maxWidth: "90%",
+                        maxWidth: 400,
                         lineHeight: 15,
                         alignSelf: "center",
                         overflow: "scroll",
                       },
                     ]}
                   >
-                    {rp}
+                    {rp.text}
                   </Text>
                   <Text
                     style={[
@@ -131,7 +132,7 @@ export default function Gemini() {
                       { alignSelf: "flex-end", right: 10, bottom: 10 },
                     ]}
                   >
-                    {DataAhora()}
+                    {rp.date}
                   </Text>
                 </View>
               );
@@ -142,7 +143,7 @@ export default function Gemini() {
         style={{
           boxShadow: "0px 0px 5px 0.1px white",
           flex: 1,
-          bottom: escrevendo == true ? "39%" : "2%", // esto cambia de 25 a 50% de la pantalla para que se pueda ver
+          bottom: escrevendo == true ? "31%" : "1%", // esto cambia de 1 a 50% de la pantalla para que se pueda ver
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
@@ -181,6 +182,11 @@ export default function Gemini() {
           }
         />
       </View>
+      <View
+        style={{
+          height: 90,
+        }}
+      />
     </ContainerGradient>
   );
 }

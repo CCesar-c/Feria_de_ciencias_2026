@@ -1,4 +1,4 @@
-import {  TextInput } from "react-native";
+import { TextInput } from "react-native";
 import estilo from "../style/global";
 import { useState } from "react";
 /**
