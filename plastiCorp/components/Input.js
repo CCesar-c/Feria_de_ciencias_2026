@@ -2,7 +2,7 @@ import { TextInput } from "react-native";
 import estilo from "../style/global";
 import { useState } from "react";
 /**
- * @param {import('react-native').TextInputProps & { style?: import('react-native').StyleProp<import('react-native').TextStyle> }} props
+ * @param {import('react-native').TextInputInstance & import('react-native').TextInputProps & { style?: import('react-native').StyleProp<import('react-native').TextStyle> }} props
  */
 
 export default function Input({
@@ -11,6 +11,7 @@ export default function Input({
   onBlur,
   value,
   children,
+  ref,
   ...rest
 }) {
   const [escrevendo, setEscrevendo] = useState(false);
@@ -26,7 +27,7 @@ export default function Input({
         setEscrevendo(false);
         onBlur ? onBlur() : null;
       }}
-
+      ref={ref}
       style={[
         estilo.input,
         {

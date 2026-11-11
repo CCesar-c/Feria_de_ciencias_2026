@@ -1,6 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { View, Text, ScrollView, Keyboard, Image } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import ContainerGradient from "../simple_code/ContainerGradient";
@@ -20,29 +20,33 @@ export default function Gemini() {
     return `${dataNow.getHours()}:${dataNow.getMinutes()}:${dataNow.getSeconds()} - ${dataNow.getMilliseconds()} `;
   }
   const [pergunta, setPergunta] = useState("");
-  const [resposta, setResposta] = useState([{text:"Ola, como eu posso te ajudar", date:"now"}]);
+  const [resposta, setResposta] = useState([
+    { text: "Ola, como eu posso te ajudar", date: "now" },
+  ]);
   const [escrevendo, setEscrevendo] = useState(false);
+  const inputRef = useRef(null);
 
   async function askgemini() {
     try {
-      const respons = await ai.models.generateContent({
-        model: "gemini-3.5-flash-lite",
-        contents: [pergunta],
-        config: {
-          thinkingConfig: {
-            thinkingLevel:"MINIMAL"
-          },
-          systemInstruction:
-            "Tu vas a ser un Tipo de professor que explicara de forma simple y concisa sobre: residuos, reciclaje y microplasticos",
-        },
-      });
-      console.log(respons);
+      //       const respons = await ai.models.generateContent({
+      //         model: "gemini-3.5-flash-lite",
+      //         contents: [pergunta],
+      //         config: {
+      //           thinkingConfig: {
+      //             thinkingLevel:"MINIMAL"
+      //           },
+      //           systemInstruction:
+      //             "Tu vas a ser un Tipo de professor que explicara de forma simple y concisa sobre: residuos, reciclaje y microplasticos",
+      //         },
+      //       });
+      //       console.log(respons);
+      //
+      //       if (respons && respons.text) {
+      //         setResposta([...resposta, respons]);
+      //
+      //       }
+      inputRef.current?.clear();
 
-      if (respons && respons.text) {
-        setResposta([...resposta, respons]);
-
-        setPergunta("");
-      }
     } catch (error) {
       console.error("Erro ao chamar o Gemini:", error);
     }
@@ -84,7 +88,7 @@ export default function Gemini() {
                       top: -3,
                       backgroundColor: "white",
                       minWidth: "50%",
-                      width:"100vw",
+                      width: "100vw",
                       padding: 5,
                       borderTopStartRadius: 30,
                       borderTopEndRadius: 30,
@@ -146,7 +150,7 @@ export default function Gemini() {
         style={{
           boxShadow: "0px 0px 5px 0.1px white",
           flex: 1,
-          bottom: escrevendo == true ? "31%" : "1%", // esto cambia de 1 a 50% de la pantalla para que se pueda ver
+          bottom: escrevendo == true ? "39%" : "1%", // esto cambia de 1 a 50% de la pantalla para que se pueda ver
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
@@ -162,10 +166,11 @@ export default function Gemini() {
         <Input
           placeholder="escreva sua pergunta aqui"
           value={pergunta}
+          ref={inputRef}
           style={{
+            borderWidth: 0,
             height: "90%",
             width: "70%",
-            borderWidth: 0,
           }}
           onChangeText={(t) => setPergunta(t)}
         />
