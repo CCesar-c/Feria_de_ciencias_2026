@@ -28,23 +28,23 @@ export default function Gemini() {
 
   async function askgemini() {
     try {
-      //       const respons = await ai.models.generateContent({
-      //         model: "gemini-3.5-flash-lite",
-      //         contents: [pergunta],
-      //         config: {
-      //           thinkingConfig: {
-      //             thinkingLevel:"MINIMAL"
-      //           },
-      //           systemInstruction:
-      //             "Tu vas a ser un Tipo de professor que explicara de forma simple y concisa sobre: residuos, reciclaje y microplasticos",
-      //         },
-      //       });
-      //       console.log(respons);
-      //
-      //       if (respons && respons.text) {
-      //         setResposta([...resposta, respons]);
-      //
-      //       }
+            const respons = await ai.models.generateContent({
+              model: "gemini-3.5-flash-lite",
+              contents: [pergunta],
+              config: {
+                thinkingConfig: {
+                  thinkingLevel:"MINIMAL"
+                },
+                systemInstruction:
+                  "Tu vas a ser un Tipo de professor que explicara de forma simple y concisa sobre: residuos, reciclaje y microplasticos",
+              },
+            });
+            console.log(respons);
+      
+            if (respons && respons.text) {
+              setResposta([...resposta, respons]);
+      
+            }
       inputRef.current?.clear();
 
     } catch (error) {
