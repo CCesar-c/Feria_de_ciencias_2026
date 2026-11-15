@@ -180,7 +180,6 @@ export default function Gemini() {
           }}
           onChangeText={(t) => {
             setPergunta(t);
-            console.log(Keyboard.metrics());
           }}
         />
         <Botao

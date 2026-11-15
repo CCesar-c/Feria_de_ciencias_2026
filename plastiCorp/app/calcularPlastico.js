@@ -156,7 +156,6 @@ export default function calcularPlastico() {
                 width: "90%",
                 alignItems: "center",
                 flexDirection: "column",
-                backgroundColor: "white",
                 alignSelf: "center",
                 rowGap: 10,
                 borderWidth: 5,
@@ -171,8 +170,6 @@ export default function calcularPlastico() {
                   alignSelf: "center",
                   textAlign: "center",
                   margin: 5,
-                  color: "#2D3748",
-                  backgroundColor: "white",
                 },
               ]}
             >
@@ -187,9 +184,10 @@ export default function calcularPlastico() {
                 data={data}
                 labelKey="tipo"
                 valueKey="valor"
+                theme={"dark"}
                 legend={true}
                 selectedIndex={0}
-                colors={["orange", "red"]}
+                colors={["gray", "red"]}
                 arcLabels={{
                   minPercentage: 0,
                   reservedWidth: 100,
@@ -208,6 +206,11 @@ export default function calcularPlastico() {
               <LineChart
                 data={dataLine}
                 scrollable
+                theme={{
+                  background: "#14171C",
+                  plotBackground:"#14171C"
+                }}
+
                 interaction={{
                   mode: "scrub",
                   selectionPersistence: "whileActive",
@@ -230,31 +233,33 @@ export default function calcularPlastico() {
             </View>
             <View
               style={{
+                padding:10,
                 borderRadius: 10,
-                borderWidth: 1,
-                height: 300,
+                height: 420,
                 width: 350,
+                backgroundColor:"#14171C"
               }}
             >
               <AntDesign
                 name="credit-card"
-                color="black"
+                color="white"
                 size={150}
                 style={{ alignSelf: "center" }}
               />
-              <Text>
+              <Text style={estilo.textito}>
                 Quantidades de cartões de credito que consegue ser feito con o
                 plastico do seu corpo em:
-                {"\n- Dia: " + quantidade_cartoes_dia.toPrecision(3) + "%"}
-                {"\n- Mes: " + quantidade_cartoes_dia.toPrecision(3) * 30 + "%"}
+
+                {"\n- Dia: " + quantidade_cartoes_dia.toFixed(10) + "%"}
+                {"\n- Mes: " + (quantidade_cartoes_dia * 30).toFixed(10)  + "%"}
                 {"\n- ano: " +
-                  quantidade_cartoes_dia.toPrecision(3) * 365 +
+                  (quantidade_cartoes_dia * 365).toFixed(10)  +
                   "%"}
                 {"\n- 10 anos: " +
-                  quantidade_cartoes_dia.toPrecision(3) * 3650 +
+                  (quantidade_cartoes_dia * 3650).toFixed(10)  +
                   "%"}
                 {"\n- 50 anos: " +
-                  quantidade_cartoes_dia.toPrecision(3) * (3650 * 5) +
+                  (quantidade_cartoes_dia * (3650 * 5)).toFixed(10)  +
                   "%"}
               </Text>
             </View>
