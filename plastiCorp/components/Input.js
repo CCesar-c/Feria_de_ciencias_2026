@@ -27,6 +27,7 @@ export default function Input({
         setEscrevendo(false);
         onBlur ? onBlur() : null;
       }}
+
       ref={ref}
       style={[
         estilo.input,

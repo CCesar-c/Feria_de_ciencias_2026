@@ -1,7 +1,14 @@
 import { GoogleGenAI } from "@google/genai";
 
 import { useRef, useState } from "react";
-import { View, Text, ScrollView, Keyboard, Image } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  Keyboard,
+  Image,
+  KeyboardAvoidingView,
+} from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import ContainerGradient from "../simple_code/ContainerGradient";
 import Input from "../components/Input";
@@ -28,25 +35,23 @@ export default function Gemini() {
 
   async function askgemini() {
     try {
-            const respons = await ai.models.generateContent({
-              model: "gemini-3.5-flash-lite",
-              contents: [pergunta],
-              config: {
-                thinkingConfig: {
-                  thinkingLevel:"MINIMAL"
-                },
-                systemInstruction:
-                  "Tu vas a ser un Tipo de professor que explicara de forma simple y concisa sobre: residuos, reciclaje y microplasticos",
-              },
-            });
-            console.log(respons);
-      
-            if (respons && respons.text) {
-              setResposta([...resposta, respons]);
-      
-            }
-      inputRef.current?.clear();
+      const respons = await ai.models.generateContent({
+        model: "gemini-3.5-flash-lite",
+        contents: [pergunta],
+        config: {
+          thinkingConfig: {
+            thinkingLevel: "MINIMAL",
+          },
+          systemInstruction:
+            "Tu vas a ser un Tipo de professor que explicara de forma simple y concisa sobre: residuos, reciclaje y microplasticos",
+        },
+      });
+      console.log(respons);
 
+      if (respons && respons.text) {
+        setResposta([...resposta, respons]);
+      }
+      inputRef.current?.clear();
     } catch (error) {
       console.error("Erro ao chamar o Gemini:", error);
     }
@@ -146,11 +151,12 @@ export default function Gemini() {
             })
           : null}
       </ScrollView>
+
       <View
         style={{
           boxShadow: "0px 0px 5px 0.1px white",
           flex: 1,
-          bottom: escrevendo == true ? "39%" : "1%", // esto cambia de 1 a 50% de la pantalla para que se pueda ver
+          bottom: escrevendo == true ? (Keyboard.metrics().height - 25) : "1%", // esto cambia de 1 a 50% de la pantalla para que se pueda ver
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
@@ -159,7 +165,7 @@ export default function Gemini() {
           position: "absolute",
           backgroundColor: "rgba(21, 77, 89, 1.0)",
           height: 75,
-          width: 350,
+          width: Keyboard.isVisible() ? Keyboard.metrics().width : "80%",
           borderRadius: 50,
         }}
       >
@@ -172,7 +178,10 @@ export default function Gemini() {
             height: "90%",
             width: "70%",
           }}
-          onChangeText={(t) => setPergunta(t)}
+          onChangeText={(t) => {
+            setPergunta(t);
+            console.log(Keyboard.metrics());
+          }}
         />
         <Botao
           style={{
@@ -190,6 +199,7 @@ export default function Gemini() {
           }
         />
       </View>
+
       <View
         style={{
           height: 90,

@@ -19,18 +19,20 @@ export default function calcularPlastico() {
    */
   /* Agua Embotellada	11,000 - 24,000 partículas  || media - 17500 */
   /* Agua de la Torneira	10 - 30 partículas || media - 20 */
-  /* 100 partículas de microplásticos comida || media - 50 */
+  /* 100 partículas de microplásticos comida || media - 100 */
   /* Total Diario Estimado	~71,200 partículas inhalada   || media -  35600 */
 
   const AnimatedView = createAnimatedComponent(View);
   const [restPlatico, setRestPlatico] = useState(0);
   const [fadeIn, setfadeIn] = useState();
 
-  const [aguaTorneira, setAguaTorneira] = useState(false);
-  const [aguaComprada, setAguaComprada] = useState(false);
+  const [aguaTorneira, setAguaTorneira] = useState(false); // media - 20
+  const [aguaComprada, setAguaComprada] = useState(false); //  media - 17500
+  const [aguaFiltrada, setAguaFiltrada] = useState(false); // media geral da cuantidade de microplasticos que passar pelos filtros sao = 6,9375
 
-  const [comidaPlastico, setComidaPlastico] = useState(false);
-  const [litrosAgua, setLitrosAgua] = useState(false);
+  const [comidaPlastico, setComidaPlastico] = useState(0); // media - 100
+  const [utensiliosPlastico, setUtensiliosPlastico] = useState(false); //  em média mais de 130.000 partículas por dia
+  const [litrosAgua, setLitrosAgua] = useState(0);
 
   let restoMinimoPlastico = restPlatico * 0.01;
 
@@ -106,9 +108,14 @@ export default function calcularPlastico() {
             onValueChange={setAguaTorneira}
           />
           <ChequeBox
-            text="Toma agua de garra comprada?"
+            text="Toma agua comprada de garrafa?"
             value={aguaComprada}
             onValueChange={setAguaComprada}
+          />
+          <ChequeBox
+            text="Toma agua filtrada?"
+            value={aguaFiltrada}
+            onValueChange={setAguaFiltrada}
           />
           <Input
             placeholder="Quantas vezes comeu hoje?"
@@ -117,23 +124,23 @@ export default function calcularPlastico() {
             keyboardType="numeric"
             onChangeText={(e) => setComidaPlastico(Number(e))}
           />
+          <ChequeBox
+            text="Você utiliza utensílios de plástico?"
+            value={utensiliosPlastico}
+            onValueChange={setUtensiliosPlastico}
+          />
           <Botao
             style={{
               alignSelf: "center",
             }}
             children={"Fazer o calculo"}
             onPress={() => {
-              if (aguaComprada && aguaTorneira) {
-                setRestPlatico(
-                  litrosAgua * 17520 + comidaPlastico * 50 + 35600,
-                );
-              } else if (aguaTorneira) {
-                setRestPlatico(litrosAgua * 20 + comidaPlastico * 50 + 35600);
-              } else if (aguaComprada) {
-                setRestPlatico(
-                  litrosAgua * 17500 + comidaPlastico * 50 + 35600,
-                );
-              }
+              setRestPlatico(
+                ((aguaTorneira ? 20 : 0) +
+                  (aguaComprada ? 17500 : 0 )+
+                  (aguaFiltrada ? 6.9375 : 0) )* litrosAgua + (comidaPlastico * 100)
+                  + (utensiliosPlastico ? 130000 : 0),
+              );
               setfadeIn(FadeIn.duration(300));
               console.log(restPlatico);
             }}

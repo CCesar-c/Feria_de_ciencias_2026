@@ -96,3 +96,15 @@ Filtros de Carbón Activado (Bloque de alta calidad)	Retienen microplásticos de
 Filtros de Jarra o Grifo comunes (Sedimentos básicos)	Retienen microplásticos grandes de 1 a 5 micras en adelante.
 
 Una tarjeta de crédito estándar tiene un grosor de 760 micras (o micrómetros), lo que equivale a 0.76 milímetros.
+
+Filtro de Jarra / Grifo Común (1 - 5 µm)	~10% – 30% (solo los más grandes)	7 a 27 partículas / L media = 17
+Carbón Activado de Alta Calidad (0.5 - 1 µm)	~50% – 70%	3 a 15 partículas / L media = 9
+Ultrafiltración (UF) (0.01 - 0.1 µm)	~90% – 95%	0.5 a 3 partículas / L media = 1.75
+Ósmosis Inversa (RO) (0.0001 µm)	~99.9%	Prácticamente 0 (menos de 0.03 partículas / L)
+
+media geral da cuantidade de microplasticos que passar pelos filtros sao = 6,9375
+
+
+Média por utensílios de plástico:
+
+Uma pessoa que cozinha e aquece comida em plásticos ingere, em média, mais de 130.000 partículas por dia
