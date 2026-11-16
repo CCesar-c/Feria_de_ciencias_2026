@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { ScrollView, View, TextInput, Text, Keyboard } from "react-native";
 import estilo from "../style/global";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { LineChart, PieChart } from "react-native-chart-kit/v2";
+import { LineChart, PieChart, DonutChart } from "react-native-chart-kit/v2";
 import {
   FadeIn,
   ReducedMotionConfig,
   createAnimatedComponent,
 } from "react-native-reanimated";
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import Botao from "../components/Botao";
 import ContainerGradient from "../simple_code/ContainerGradient";
 import Input from "../components/Input";
@@ -191,12 +192,12 @@ export default function calcularPlastico() {
           <Input
             placeholder="Quanto voce pesa kg?"
             value={peso}
-            onChangeText={(t) => setPeso(t)}
+            onChangeText={(t) => setPeso(Number(t))}
           />
           <Input
             placeholder="Qual e a sua idade?"
             value={idade}
-            onChangeText={(t) => setIdade(t)}
+            onChangeText={(t) => setIdade(Number(t))}
           />
           <Botao
             style={{
@@ -205,18 +206,24 @@ export default function calcularPlastico() {
             children={"Fazer o calculo"}
             onPress={() => {
               setRestPlatico(
-                ((tempAgua[0]?.state ? 20 : 0) +
+                ((
+                  (tempAgua[0]?.state ? 20 : 0) +
                   (tempAgua[1]?.state ? 5000 : 0) +
                   (tempAgua[2]?.state ? 17500 : 0) +
                   (tempAgua[3]?.state ? 2 : 0)) *
-                  litrosAgua +
-                  comidaPlastico * 100 +
-                  ((tempComida[0]?.state ? 130000 : 0) +
-                    (tempComida[1]?.state ? 150 : 0) +
-                    (tempComida[2]?.state ? 250 : 0) +
-                    (tempComida[3]?.state ? 2000 : 0)),
-              );
+                  litrosAgua) +
+                comidaPlastico * 100 +
+                ((tempComida[0]?.state ? 130000 : 0) +
+                  (tempComida[1]?.state ? 150 : 0) +
+                  (tempComida[2]?.state ? 250 : 0) +
+                  (tempComida[3]?.state ? 2000 : 0)) +
+                (
+                  (tempUtensilios[0]?.state ? 200 : 0) +
+                  (tempUtensilios[1]?.state ? 15 : 0) +
+                  (tempUtensilios[2]?.state ? 25000 : 0)
 
+                )
+              );
               setfadeIn(FadeIn.duration(300));
               console.log(restPlatico);
             }}
@@ -313,12 +320,36 @@ export default function calcularPlastico() {
                 width={350}
               />
             </View>
+            <Text style={[estilo.textito, { alignSelf: "baseline", left: 15 }]}>
+              Quantidade de plastico em kg em base do seu peso(kg)
+            </Text>
             <View
               style={{
                 padding: 10,
                 borderRadius: 10,
-                height: 420,
-                width: 350,
+                backgroundColor: "#14171C",
+              }}
+            >
+              <FontAwesome6
+                name="bottle-water"
+                color="white"
+                size={150}
+                style={{ alignSelf: "center" }}
+              />
+
+              <Text style={[estilo.textito, { marginTop: 10 }]}>
+                Quantidade de plaste base em seu corpo:
+                {"\n"} - Peso: {(restPlatico / 11500000000).toFixed(10)}
+                {"\n"}- Em porcentagem: {(((restPlatico / 11500000000).toFixed(10) / peso) * 100).toFixed(10) + "%"}
+              </Text>
+
+            </View>
+            <View
+              style={{
+                flex: 1,
+                padding: 10,
+                borderRadius: 10,
+
                 backgroundColor: "#14171C",
               }}
             >
@@ -328,6 +359,7 @@ export default function calcularPlastico() {
                 size={150}
                 style={{ alignSelf: "center" }}
               />
+
               <Text style={estilo.textito}>
                 Quantidades de cartões de credito que consegue ser feito com o
                 plastico do seu corpo em:

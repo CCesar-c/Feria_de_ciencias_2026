@@ -1,3 +1,7 @@
+
+# microplasticos en media son 5.5 µm 
+# 1kg en 11.500.000.000 de microplasticos em media
+# radio de 2.75 µm
 Aquí tienes los valores científicos aproximados (en número de partículas de micro y nanoplásticos) que puedes programar detrás de cada pregunta de tu aplicación, coherentes con los datos de tu proyecto.
 
 Como muchos estudios dan rangos amplios (dependiendo de si miden solo microplásticos grandes o también nanoplásticos), he seleccionado valores promedio representativos y consistentes con tu tabla anterior para que el algoritmo de tu app funcione con rigor científico:
@@ -51,7 +55,7 @@ El peso y la edad no suman partículas, sino que sirven para calcular el Nivel d
 
 • Idade aproximada: Permite estimar la carga acumulada histórica (multiplicando el promedio diario por los años de vida, recordando que ~1% de las partículas más pequeñas quedan retenidas en tejidos) o ajustar alertas (ej. mayor vulnerabilidad en niños/adolescentes en desarrollo).
 
-Si estás programando esta app (o diseñando su lógica para presentarla), puedo ayudarte a escribir la fórmula matemática completa o el código en JavaScript/Python para calcular el diagnóstico final y clasificar el resultado en riesgo Bajo, Medio o Alto. ¿Te gustaría que lo armemos?
+
 
 # FONTES
 
