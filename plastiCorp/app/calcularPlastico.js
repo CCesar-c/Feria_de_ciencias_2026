@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ScrollView, View, TextInput, Text } from "react-native";
+import { ScrollView, View, TextInput, Text, Keyboard } from "react-native";
 import estilo from "../style/global";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { LineChart, PieChart } from "react-native-chart-kit/v2";
@@ -9,30 +9,27 @@ import {
   createAnimatedComponent,
 } from "react-native-reanimated";
 import Botao from "../components/Botao";
-import ChequeBox from "../components/ChequeBox";
 import ContainerGradient from "../simple_code/ContainerGradient";
 import Input from "../components/Input";
+import PreguntaModulo from "../simple_code/PreguntaModulo";
 
 export default function calcularPlastico() {
-  /**
-   * 💳 Un tarjeta de crédito = 5 gramos = 8.680.000.000 partículas de 10 micras
-   */
-  /* Agua Embotellada	11,000 - 24,000 partículas  || media - 17500 */
-  /* Agua de la Torneira	10 - 30 partículas || media - 20 */
-  /* 100 partículas de microplásticos comida || media - 100 */
-  /* Total Diario Estimado	~71,200 partículas inhalada   || media -  35600 */
-
+  const [heightHidden, setHeightHidden] = useState(10);
+  Keyboard.addListener("keyboardDidShow", () => {
+    console.log(Keyboard.metrics().height);
+    setHeightHidden(Keyboard.metrics().height);
+  });
+  Keyboard.addListener("keyboardDidHide", () => {
+    setHeightHidden(0);
+  });
   const AnimatedView = createAnimatedComponent(View);
   const [restPlatico, setRestPlatico] = useState(0);
   const [fadeIn, setfadeIn] = useState();
 
-  const [aguaTorneira, setAguaTorneira] = useState(false); // media - 20
-  const [aguaComprada, setAguaComprada] = useState(false); //  media - 17500
-  const [aguaFiltrada, setAguaFiltrada] = useState(false); // media geral da cuantidade de microplasticos que passar pelos filtros sao = 6,9375
-
-  const [comidaPlastico, setComidaPlastico] = useState(0); // media - 100
-  const [utensiliosPlastico, setUtensiliosPlastico] = useState(false); //  em média mais de 130.000 partículas por dia
+  const [comidaPlastico, setComidaPlastico] = useState(0);
   const [litrosAgua, setLitrosAgua] = useState(0);
+  const [peso, setPeso] = useState(0);
+  const [idade, setIdade] = useState(0);
 
   let restoMinimoPlastico = restPlatico * 0.01;
 
@@ -79,7 +76,6 @@ export default function calcularPlastico() {
   return (
     <ContainerGradient>
       <ReducedMotionConfig mode="never" />
-
       <ScrollView showsVerticalScrollIndicator={false}>
         <View
           style={[
@@ -91,43 +87,103 @@ export default function calcularPlastico() {
               padding: 10,
               margin: 10,
               gap: 10,
+              backgroundImage: "radial-gradient(transparent 20%, white)",
             },
             estilo.card,
           ]}
         >
-          <Text style={estilo.titulo}>Calculo de Plastico Diario</Text>
+          <Text style={[estilo.titulo, { color: "black" }]}>
+            Calculo de Plastico Diario
+          </Text>
+          <PreguntaModulo
+            styleTitle={{
+              color: "black",
+              fontSize: 20,
+              fontWeight: "bold",
+            }}
+            styleSubtitle={{
+              color: "black",
+              fontSize: 20,
+              overflow: "visible",
+            }}
+            titulo={"Modulo 1: Consumo de agua"}
+            subtitulos={[
+              "Quanta litros de agua consumiu hoje (L)?",
+              "De que tipo frecuentemente? ",
+            ]}
+            nomesOptions={[
+              { nome: "Agua da torneira" },
+              { nome: "Agua de galão" },
+              { nome: "Agua de garrafa comprada" },
+              { nome: "Agua de filtro " },
+            ]}
+            inputOptions={{
+              placeholder: "escreva aqui",
+              value: litrosAgua,
+              onChangeText: setLitrosAgua,
+            }}
+            retornarChecks={(value) => console.log(value)}
+          />
+          <PreguntaModulo
+            styleTitle={{
+              color: "black",
+              fontSize: 20,
+              fontWeight: "bold",
+            }}
+            styleSubtitle={{
+              color: "black",
+              fontSize: 20,
+              overflow: "visible",
+            }}
+            titulo={"Modulo 2: Alimentos e recipientes"}
+            subtitulos={["Quantas vezes comeu hoje?", "Selecione seus habitos"]}
+            nomesOptions={[
+              { nome: "Usa um pote plastico no micro-ondas?" },
+              { nome: "envolve comida em plastico?" },
+              { nome: "come mariscos e peixes?" },
+              { nome: "consome comida en pote unicel ou plastico" },
+            ]}
+            inputOptions={{
+              placeholder: "escreva aqui",
+              value: comidaPlastico,
+              onChangeText: setComidaPlastico,
+            }}
+            retornarChecks={(value) => console.log(value)}
+          />
+          <PreguntaModulo
+            styleTitle={{
+              color: "black",
+              fontSize: 20,
+              fontWeight: "bold",
+            }}
+            styleSubtitle={{
+              color: "black",
+              fontSize: 20,
+              overflow: "visible",
+              lineHeight: 0,
+            }}
+            inputShow={false}
+            titulo={"Modulo 3: Utensilios e Vida"}
+            subtitulos={[
+              "                                                                         ",
+            ]}
+            nomesOptions={[
+              { nome: "Usa tabuada de cortar de plastico?" },
+              { nome: "Usa espatula de plastico?" },
+              { nome: "Costuma beber en copos descartaveis?" },
+            ]}
+            flexdirectionend="column"
+            retornarChecks={(value) => console.log(value)}
+          />
           <Input
-            placeholder="Quantos litros de agua tomou hoje?"
-            placeholderTextColor={"rgba(174, 196, 191, 0.45)"}
-            keyboardType="numeric"
-            onChangeText={(e) => setLitrosAgua(Number(e))}
-          />
-          <ChequeBox
-            text="toma agua de Torneira?"
-            value={aguaTorneira}
-            onValueChange={setAguaTorneira}
-          />
-          <ChequeBox
-            text="Toma agua comprada de garrafa?"
-            value={aguaComprada}
-            onValueChange={setAguaComprada}
-          />
-          <ChequeBox
-            text="Toma agua filtrada?"
-            value={aguaFiltrada}
-            onValueChange={setAguaFiltrada}
+            placeholder="Quanto voce pesa kg?"
+            value={peso}
+            onChangeText={(t) => setPeso(t)}
           />
           <Input
-            placeholder="Quantas vezes comeu hoje?"
-            value={comidaPlastico}
-            placeholderTextColor={"rgba(174, 196, 191, 0.45)"}
-            keyboardType="numeric"
-            onChangeText={(e) => setComidaPlastico(Number(e))}
-          />
-          <ChequeBox
-            text="Você utiliza utensílios de plástico?"
-            value={utensiliosPlastico}
-            onValueChange={setUtensiliosPlastico}
+            placeholder="Qual e a sua idade?"
+            value={idade}
+            onChangeText={(t) => setIdade(t)}
           />
           <Botao
             style={{
@@ -136,15 +192,23 @@ export default function calcularPlastico() {
             children={"Fazer o calculo"}
             onPress={() => {
               setRestPlatico(
-                ((aguaTorneira ? 20 : 0) +
-                  (aguaComprada ? 17500 : 0 )+
-                  (aguaFiltrada ? 6.9375 : 0) )* litrosAgua + (comidaPlastico * 100)
-                  + (utensiliosPlastico ? 130000 : 0),
+                // ((aguaTorneira ? 20 : 0) +
+                //   (aguaComprada ? 17500 : 0) +
+                //   (aguaFiltrada ? 6.9375 : 0)) *
+                //   litrosAgua +
+                //   comidaPlastico * 100 +
+                //   (utensiliosPlastico ? 130000 : 0),
+
               );
               setfadeIn(FadeIn.duration(300));
               console.log(restPlatico);
             }}
           />
+          <View
+            style={{
+              height: heightHidden,
+            }}
+          ></View>
         </View>
         {restPlatico != 0 ? (
           <AnimatedView
@@ -208,7 +272,7 @@ export default function calcularPlastico() {
                 scrollable
                 theme={{
                   background: "#14171C",
-                  plotBackground:"#14171C"
+                  plotBackground: "#14171C",
                 }}
 
                 interaction={{
@@ -233,11 +297,11 @@ export default function calcularPlastico() {
             </View>
             <View
               style={{
-                padding:10,
+                padding: 10,
                 borderRadius: 10,
                 height: 420,
                 width: 350,
-                backgroundColor:"#14171C"
+                backgroundColor: "#14171C",
               }}
             >
               <AntDesign
@@ -249,17 +313,14 @@ export default function calcularPlastico() {
               <Text style={estilo.textito}>
                 Quantidades de cartões de credito que consegue ser feito con o
                 plastico do seu corpo em:
-
                 {"\n- Dia: " + quantidade_cartoes_dia.toFixed(10) + "%"}
-                {"\n- Mes: " + (quantidade_cartoes_dia * 30).toFixed(10)  + "%"}
-                {"\n- ano: " +
-                  (quantidade_cartoes_dia * 365).toFixed(10)  +
-                  "%"}
+                {"\n- Mes: " + (quantidade_cartoes_dia * 30).toFixed(10) + "%"}
+                {"\n- ano: " + (quantidade_cartoes_dia * 365).toFixed(10) + "%"}
                 {"\n- 10 anos: " +
-                  (quantidade_cartoes_dia * 3650).toFixed(10)  +
+                  (quantidade_cartoes_dia * 3650).toFixed(10) +
                   "%"}
                 {"\n- 50 anos: " +
-                  (quantidade_cartoes_dia * (3650 * 5)).toFixed(10)  +
+                  (quantidade_cartoes_dia * (3650 * 5)).toFixed(10) +
                   "%"}
               </Text>
             </View>
@@ -269,3 +330,40 @@ export default function calcularPlastico() {
     </ContainerGradient>
   );
 }
+
+/**
+ *
+ *  <Input
+   placeholder="Quantos litros de agua tomou hoje?"
+   placeholderTextColor={"rgba(174, 196, 191, 0.45)"}
+   keyboardType="numeric"
+   onChangeText={(e) => setLitrosAgua(Number(e))}
+ />
+ <ChequeBox
+   text="toma agua de Torneira?"
+   value={aguaTorneira}
+   onValueChange={setAguaTorneira}
+ />
+ <ChequeBox
+   text="Toma agua comprada de garrafa?"
+   value={aguaComprada}
+   onValueChange={setAguaComprada}
+ />
+ <ChequeBox
+   text="Toma agua filtrada?"
+   value={aguaFiltrada}
+   onValueChange={setAguaFiltrada}
+ />
+ <Input
+   placeholder="Quantas vezes comeu hoje?"
+   value={comidaPlastico}
+   placeholderTextColor={"rgba(174, 196, 191, 0.45)"}
+   keyboardType="numeric"
+   onChangeText={(e) => setComidaPlastico(Number(e))}
+ />
+ <ChequeBox
+   text="Você utiliza utensílios de plástico?"
+   value={utensiliosPlastico}
+   onValueChange={setUtensiliosPlastico}
+ />
+ */

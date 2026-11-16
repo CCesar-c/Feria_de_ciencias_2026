@@ -22,10 +22,7 @@ const ai = new GoogleGenAI({
 export default function Gemini() {
   Keyboard.addListener("keyboardDidShow", () => setEscrevendo(true));
   Keyboard.addListener("keyboardDidHide", () => setEscrevendo(false));
-  function DataAhora() {
-    let dataNow = new Date();
-    return `${dataNow.getHours()}:${dataNow.getMinutes()}:${dataNow.getSeconds()} - ${dataNow.getMilliseconds()} `;
-  }
+
   const [pergunta, setPergunta] = useState("");
   const [resposta, setResposta] = useState([
     { text: "Ola, como eu posso te ajudar", date: "now" },

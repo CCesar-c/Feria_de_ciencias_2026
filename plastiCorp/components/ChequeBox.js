@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 import { Host, Checkbox } from "@expo/ui";
-import { border, cornerRadius,  } from "@expo/ui/jetpack-compose/modifiers";
+import { border, cornerRadius } from "@expo/ui/jetpack-compose/modifiers";
 import estilo from "../style/global";
 
 export default function ChequeBox({
@@ -16,11 +16,11 @@ export default function ChequeBox({
         height: "50",
         flexDirection: "row",
         alignItems: "center",
+        boxSizing: "border-box",
       }}
     >
       <Host matchContents>
         <Checkbox
-
           modifiers={[
             border(
               2,
@@ -28,13 +28,20 @@ export default function ChequeBox({
                 ? "rgba(106, 217, 165, 1.0)"
                 : "rgba(21, 77, 89, 1.0)",
             ),
-            cornerRadius(4)
+            cornerRadius(4),
           ]}
           value={value}
           onValueChange={onValueChange}
         />
       </Host>
-      <Text style={[estilo.textito, {left:2, lineHeight:18}]}>{text}</Text>
+      <Text
+        style={[
+          estilo.textito,
+          { left: 2, lineHeight: 18, color: "black", overflow: "scroll" },
+        ]}
+      >
+        {text}
+      </Text>
     </View>
   );
 }

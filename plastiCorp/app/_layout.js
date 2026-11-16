@@ -84,9 +84,30 @@ export default function Layout() {
           tabBarIcon: ({ color }) => (
             <FontAwesome6
               name="calculator"
-              //style={{
-                //transform: [{ rotate: "45deg" }],
-              //}}
+              size={24}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Fontes"
+        options={{
+          tabBarStyle: {
+            backgroundColor: "#0F172A",
+          },
+          headerStyle: {
+            backgroundColor: "#0F172A",
+          },
+          title: "Fontes",
+          headerTintColor: "white",
+          headerTitle: "Fontes",
+          tabBarActiveTintColor: "#57bb99",
+          tabBarInactiveTintColor: "#94A3B8",
+          headerShadowVisible: false,
+          tabBarIcon: ({ color }) => (
+            <FontAwesome6
+              name="info"
               size={24}
               color={color}
             />
