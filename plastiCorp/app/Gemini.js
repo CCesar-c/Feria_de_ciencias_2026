@@ -1,14 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 
 import { useRef, useState } from "react";
-import {
-  View,
-  Text,
-  ScrollView,
-  Keyboard,
-  Image,
-  KeyboardAvoidingView,
-} from "react-native";
+import { View, Text, ScrollView, Keyboard, Image } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import ContainerGradient from "../simple_code/ContainerGradient";
 import Input from "../components/Input";
@@ -153,7 +146,7 @@ export default function Gemini() {
         style={{
           boxShadow: "0px 0px 5px 0.1px white",
           flex: 1,
-          bottom: escrevendo == true ? (Keyboard.metrics().height - 25) : "1%", // esto cambia de 1 a 50% de la pantalla para que se pueda ver
+          bottom: escrevendo == true ? Keyboard.metrics().height - 25 : "1%", // esto cambia de 1 a 50% de la pantalla para que se pueda ver
           display: "flex",
           flexDirection: "row",
           justifyContent: "center",
