@@ -1,4 +1,5 @@
 Aquí tienes los valores científicos aproximados (en número de partículas de micro y nanoplásticos) que puedes programar detrás de cada pregunta de tu aplicación, coherentes con los datos de tu proyecto.
+
 Como muchos estudios dan rangos amplios (dependiendo de si miden solo microplásticos grandes o también nanoplásticos), he seleccionado valores promedio representativos y consistentes con tu tabla anterior para que el algoritmo de tu app funcione con rigor científico:
 
 Módulo 1: Consumo de Agua (Multiplica los litros ingresados × el valor elegido)
@@ -6,8 +7,11 @@ Módulo 1: Consumo de Agua (Multiplica los litros ingresados × el valor elegido
 
 Opción en la App	Partículas por Litro (L)	Justificación Científica / Coherencia con tu Proyecto
 Água de Torneira (Grifo)	20 partículas / L	Punto medio de tu tabla (10 a 30 partículas/L en agua de red).
-Água Embotellada (Garrafa PET)	17.500 partículas / L	Punto medio de tu tabla (11.000 a 24.000 partículas/L según estudios con espectroscopía Raman).
+
 Água de Bidão (Bidón Grande)	5.000 partículas / L	Menor exposición al plástico que la botella individual (menor relación superficie/volumen y plástico más rígido reutilizable), pero mayor que el grifo por el desgaste del lavado/llenado.
+
+Água Embotellada (Garrafa PET)	17.500 partículas / L	Punto medio de tu tabla (11.000 a 24.000 partículas/L según estudios con espectroscopía Raman).
+
 Água Filtrada / Vidro	2 partículas / L	Promedio entre carbón activado (~9/L), ultrafiltración (~1,75/L) y ósmosis inversa (~0/L).
 
 
@@ -21,9 +25,13 @@ Módulo 2: Alimentos e Envases
 2. Hábitos adicionales (Suma fija al total del día si se marca la casilla)
 
 • Aqueceu comida em plástico no micro-ondas: + 130.000 partículas / día (o por uso; corresponde al estudio sobre liberación por calor en envases de polipropileno/poliestireno).
+
 • Consumiu alimentos processados envueltos em plástico: + 150 partículas / día (aportado por el contacto con films plásticos, embutidos, quesos y ultraprocesados).
+
 • Comeu pescados ou mariscos: + 250 partículas / día (los frutos de mar y pescados son de las mayores fuentes dietéticas registradas, aportando entre 100 y 400 partículas por porción).
+
 • Consumiu comida de entrega (delivery) em envases de plástico/unicel: + 2.000 partículas / día (los envases desechables de poliestireno/unicel y polipropileno con comida caliente liberan entre 1.000 y 3.000 partículas por envase).
+
 
 Módulo 3: Utensílios e Bio
 
@@ -31,14 +39,18 @@ Módulo 3: Utensílios e Bio
 1. Utensilios y Estilo de Vida (Suma fija al total del día si se marca la casilla)
 
 • Usa tábuas de cortar de plástico: + 200 partículas / día (estudios muestran que cortar sobre tablas de polietileno/polipropileno libera decenas de miles de partículas al año, equivalente a ~100–300 partículas por sesión de corte).
+
 • Usa espátulas/talheres de plástico: + 15 partículas / día (basado en el estudio de NORCE/Plymouth, que estimó entre 2.400 y 5.000 partículas/año por utensilios de cocina, unos 10–15 al día).
+
 • Toma café/chá em copos descartáveis com plástico: + 25.000 partículas / día (los vasos de papel recubiertos de polietileno o vasos plásticos con bebidas calientes liberan alrededor de 25.000 partículas por taza).
 
 2. Dados Bio (Opcional) — ¿Cómo usarlos en la fórmula?
 
 El peso y la edad no suman partículas, sino que sirven para calcular el Nivel de Riesgo o Concentración Relativa:
 • Peso aproximado (kg): Divide el total de partículas ingeridas entre el peso del usuario (Partículas / kg de peso corporal). Una misma cantidad de plástico representa mayor concentración relativa en alguien de 50 kg que en alguien de 90 kg.
+
 • Idade aproximada: Permite estimar la carga acumulada histórica (multiplicando el promedio diario por los años de vida, recordando que ~1% de las partículas más pequeñas quedan retenidas en tejidos) o ajustar alertas (ej. mayor vulnerabilidad en niños/adolescentes en desarrollo).
+
 Si estás programando esta app (o diseñando su lógica para presentarla), puedo ayudarte a escribir la fórmula matemática completa o el código en JavaScript/Python para calcular el diagnóstico final y clasificar el resultado en riesgo Bajo, Medio o Alto. ¿Te gustaría que lo armemos?
 
 # FONTES

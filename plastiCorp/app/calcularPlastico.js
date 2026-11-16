@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ScrollView, View, TextInput, Text, Keyboard } from "react-native";
 import estilo from "../style/global";
 import AntDesign from "@expo/vector-icons/AntDesign";
@@ -16,7 +16,6 @@ import PreguntaModulo from "../simple_code/PreguntaModulo";
 export default function calcularPlastico() {
   const [heightHidden, setHeightHidden] = useState(10);
   Keyboard.addListener("keyboardDidShow", () => {
-    console.log(Keyboard.metrics().height);
     setHeightHidden(Keyboard.metrics().height);
   });
   Keyboard.addListener("keyboardDidHide", () => {
@@ -26,10 +25,10 @@ export default function calcularPlastico() {
   const [restPlatico, setRestPlatico] = useState(0);
   const [fadeIn, setfadeIn] = useState();
 
-  const [comidaPlastico, setComidaPlastico] = useState(0);
-  const [litrosAgua, setLitrosAgua] = useState(0);
   const [peso, setPeso] = useState(0);
   const [idade, setIdade] = useState(0);
+  const [litrosAgua, setLitrosAgua] = useState(0);
+  const [comidaPlastico, setComidaPlastico] = useState(0);
 
   let restoMinimoPlastico = restPlatico * 0.01;
 
@@ -37,6 +36,7 @@ export default function calcularPlastico() {
     { tipo: "eliminado", valor: restPlatico * 0.99 },
     { tipo: "fica", valor: restPlatico * 0.01 },
   ];
+  let tempAgua, tempComida, tempUtensilios;
   var dataLine = [
     { month: "jan", valor: restoMinimoPlastico * 31 },
     { month: "fev", valor: restoMinimoPlastico * (31 + 28) },
@@ -80,6 +80,7 @@ export default function calcularPlastico() {
         <View
           style={[
             {
+              flex: 1,
               boxShadow: "0px 0px 10px 0.1px black",
               alignSelf: "center",
               borderColor: "black",
@@ -92,7 +93,9 @@ export default function calcularPlastico() {
             estilo.card,
           ]}
         >
-          <Text style={[estilo.titulo, { color: "black" }]}>
+          <Text
+            style={[estilo.titulo, { color: "black", textAlign: "center" }]}
+          >
             Calculo de Plastico Diario
           </Text>
           <PreguntaModulo
@@ -120,9 +123,13 @@ export default function calcularPlastico() {
             inputOptions={{
               placeholder: "escreva aqui",
               value: litrosAgua,
-              onChangeText: setLitrosAgua,
+              onChangeText: (value) => {
+                setLitrosAgua(value);
+              },
             }}
-            retornarChecks={(value) => console.log(value)}
+            retornarChecks={(value) => {
+              tempAgua = value;
+            }}
           />
           <PreguntaModulo
             styleTitle={{
@@ -146,9 +153,13 @@ export default function calcularPlastico() {
             inputOptions={{
               placeholder: "escreva aqui",
               value: comidaPlastico,
-              onChangeText: setComidaPlastico,
+              onChangeText: (value) => {
+                setComidaPlastico(value);
+              },
             }}
-            retornarChecks={(value) => console.log(value)}
+            retornarChecks={(value) => {
+              tempComida = value;
+            }}
           />
           <PreguntaModulo
             styleTitle={{
@@ -173,7 +184,9 @@ export default function calcularPlastico() {
               { nome: "Costuma beber en copos descartaveis?" },
             ]}
             flexdirectionend="column"
-            retornarChecks={(value) => console.log(value)}
+            retornarChecks={(value) => {
+              tempUtensilios = value;
+            }}
           />
           <Input
             placeholder="Quanto voce pesa kg?"
@@ -192,21 +205,25 @@ export default function calcularPlastico() {
             children={"Fazer o calculo"}
             onPress={() => {
               setRestPlatico(
-                // ((aguaTorneira ? 20 : 0) +
-                //   (aguaComprada ? 17500 : 0) +
-                //   (aguaFiltrada ? 6.9375 : 0)) *
-                //   litrosAgua +
-                //   comidaPlastico * 100 +
-                //   (utensiliosPlastico ? 130000 : 0),
-
+                ((tempAgua[0]?.state ? 20 : 0) +
+                  (tempAgua[1]?.state ? 5000 : 0) +
+                  (tempAgua[2]?.state ? 17500 : 0) +
+                  (tempAgua[3]?.state ? 2 : 0)) *
+                  litrosAgua +
+                  comidaPlastico * 100 +
+                  ((tempComida[0]?.state ? 130000 : 0) +
+                    (tempComida[1]?.state ? 150 : 0) +
+                    (tempComida[2]?.state ? 250 : 0) +
+                    (tempComida[3]?.state ? 2000 : 0)),
               );
+
               setfadeIn(FadeIn.duration(300));
               console.log(restPlatico);
             }}
           />
           <View
             style={{
-              height: heightHidden,
+              height: restPlatico == 0 ? heightHidden : 0,
             }}
           ></View>
         </View>
@@ -273,6 +290,7 @@ export default function calcularPlastico() {
                 theme={{
                   background: "#14171C",
                   plotBackground: "#14171C",
+                  text: "white",
                 }}
 
                 interaction={{
@@ -311,7 +329,7 @@ export default function calcularPlastico() {
                 style={{ alignSelf: "center" }}
               />
               <Text style={estilo.textito}>
-                Quantidades de cartões de credito que consegue ser feito con o
+                Quantidades de cartões de credito que consegue ser feito com o
                 plastico do seu corpo em:
                 {"\n- Dia: " + quantidade_cartoes_dia.toFixed(10) + "%"}
                 {"\n- Mes: " + (quantidade_cartoes_dia * 30).toFixed(10) + "%"}

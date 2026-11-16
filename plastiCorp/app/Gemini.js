@@ -18,7 +18,7 @@ export default function Gemini() {
 
   const [pergunta, setPergunta] = useState("");
   const [resposta, setResposta] = useState([
-    { text: "Ola, como eu posso te ajudar", date: "now" },
+    { text: "Ola! eu sou o Especialista de plastiCorp, como eu posso te ajudar?", date: "17/11" },
   ]);
   const [escrevendo, setEscrevendo] = useState(false);
   const inputRef = useRef(null);
@@ -33,7 +33,7 @@ export default function Gemini() {
             thinkingLevel: "MINIMAL",
           },
           systemInstruction:
-            "Tu vas a ser un Tipo de professor que explicara de forma simple y concisa sobre: residuos, reciclaje y microplasticos",
+            "Voce vai ser um professor que explicara de forma simple y solida sobre: residuos, reciclagem y microplasticos, etc..",
         },
       });
       console.log(respons);
@@ -119,10 +119,14 @@ export default function Gemini() {
                     style={[
                       estilo.textito,
                       {
-                        maxWidth: 400,
-                        lineHeight: 15,
+                        textAlign: "center",
+                        maxWidth: "90%",
+                        paddingInline:10,
+                        fontSize:18,
+                        lineHeight: 20,
                         alignSelf: "center",
                         overflow: "scroll",
+                        margin:10,
                       },
                     ]}
                   >
@@ -191,7 +195,7 @@ export default function Gemini() {
 
       <View
         style={{
-          height: 90,
+          height: Keyboard.isVisible() ? Keyboard.metrics().height : "10%",
         }}
       />
     </ContainerGradient>

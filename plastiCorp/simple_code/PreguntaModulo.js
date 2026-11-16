@@ -57,7 +57,7 @@ export default function PreguntaModulo({
         <Input
           placeholder={inputOptions.placeholder}
           value={inputOptions.value}
-          onChangeText={(t) => inputOptions.onChangeText}
+          onChangeText={(t) => {inputOptions.onChangeText(t)}}
         />
       )}
       {subtitulos[1] != null ? (
