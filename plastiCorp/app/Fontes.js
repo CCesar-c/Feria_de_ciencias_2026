@@ -1,49 +1,122 @@
-import { ScrollView, Text } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import ContainerGradient from "../simple_code/ContainerGradient";
+import estilo from "../style/global";
 
 export default function Fontes() {
   return (
     <ContainerGradient>
-      <ScrollView
-        contentContainerStyle={{ flex: 1, gap:10, }}
-      >
-        <Text style={{ flex: 1, backgroundColor: "white" }}>
-          Módulo 1: Consumo de Agua
+      <ScrollView contentContainerStyle={{ gap: 10 }}>
+        <View
+          style={{
+            borderRadius: 10,
+            padding: 10,
+            backgroundColor: "rgba(255,255,255,0.65)",
+            margin: 10,
+            gap: 10,
+          }}
+        >
+          <Text
+            style={[
+              estilo.titulo,
+              {
+                color: "black",
+                backgroundColor: "white",
+                borderRadius: 10,
+                padding: 10,
+              },
+            ]}
+          >
+            Fontes do dados usados
+          </Text>
+          <View
+            style={{
+              flex: 1,
+              borderRadius: 10,
+              padding: 10,
+              backgroundImage:
+                "radial-gradient( transparent, rgba(255,255,255,1))",
+              margin: 10,
+              gap: 10,
+            }}
+          >
+            <Text
+              style={[
+                estilo.subtitle,
+                {
+                  color: "black",
+                  textAlign: "center",
+                },
+              ]}
+            >
+              Módulo 1: Consumo de Água
+            </Text>
+            <Text style={[estilo.textito, { color: "black" }]}>
+              Mason et al. (2018) – Frontiers in Chemistry: Média de 325
+              partículas/L (com picos acima de 10.000/L) em garrafas plásticas.
+              {"\n"}
+              Qian et al. (2024) – PNAS (Univ. Columbia): Até 240.000
+              partículas/L (incluindo nanoplásticos) em garrafas PET.
+              {"\n"}
+              OMS / WHO (2019): Relatório oficial sobre a eficiência de filtros
+              (Osmose Reversa, Ultrafiltração e Carvão Ativado).
+            </Text>
+          </View>
+          <View
+            style={{
+              borderRadius: 10,
+              padding: 10,
+              backgroundImage:
+                "radial-gradient( transparent, rgba(255,255,255,1))",
+              margin: 10,
+              gap: 10,
+            }}
+          >
+            <Text
+              style={[estilo.subtitle, { color: "black", textAlign: "center" }]}
+            >
+              Módulo 2: Alimentos e Embalagens
+            </Text>
 
-          • Agua Embotellada (Microplásticos): Promedio de 325 partículas/L (con picos {">"} 10.000/L), cifras muy superiores al agua de grifo.
-          • Fuente: Mason, S. A., et al. (2018). Frontiers in Chemistry.
-          • Agua Embotellada (Nanoplásticos): Hasta 240.000 partículas/L en botellas PET al medir partículas menores a 1 micra.
-          • Fuente: Qian, N., et al. (2024). PNAS (Universidad de Columbia).
-          • Agua Filtrada / Vidrio: La reducción de partículas depende del tamaño de poro de las membranas (Ósmosis Inversa, Ultrafiltración y Carbón Activado).
-          • Fuente: Organización Mundial de la Salud (OMS / WHO, 2019).
-
-        </Text>
-        <Text style={{ flex: 1, backgroundColor: "white" }}>
-          Módulo 2: Alimentos y Envases
-
-          • Ingesta Dietética Base: Estimación de consumo diario según grupos de alimentos (pescados, mariscos, sal, azúcar y miel).
-          • Fuente: Cox, K. D., et al. (2019). Environmental Science & Technology (Univ. de Victoria).
-          • Polvo Ambiental en el Plato: Caen aproximadamente 100 partículas desde el aire sobre la comida durante una cena normal.
-          • Fuente: Catarino, A. I., et al. (2018). Environmental Pollution.
-          • Calentar en Microondas (+130.000 partículas): Calentar envases plásticos libera de cientos de miles a millones de partículas por \(cm^{2}\) en minutos.
-          • Fuente: Hussain, K. A., et al. (2023). Environmental Science & Technology (Univ. de Nebraska-Lincoln).
-          • Comida de Entrega (Delivery): Envases desechables de poliestireno (unicel/isopor) y polipropileno liberan microplásticos al tocar comida caliente.
-          • Fuente: Du, F., et al. (2020). Journal of Hazardous Materials (East China Normal University).
-
-        </Text>
-
-        <Text style={{ flex: 1, backgroundColor: "white" }}>
-          Módulo 3: Utensilios y Estilo de Vida
-
-          • Tablas de Cortar de Plástico (+200 partículas/día): Picar sobre polietileno o polipropileno libera entre 100 y 300 partículas por uso (14 a 71 millones al año).
-          • Fuente: Yadav, H., et al. (2023). Environmental Science & Technology (North Dakota State University).
-          • Espátulas y Cubiertos de Plástico: El desgaste al cocinar libera entre 2.400 y 5.000 partículas al año.
-          • Fuente: Cole, M., et al. (2024). Science of the Total Environment (NORCE y Plymouth Marine Laboratory).
-          • Vasos Desechables con Recubrimiento (+25.000 partículas): Un vaso de papel recubierto de polietileno libera ~25.000 partículas en 15 minutos con bebidas calientes.
-          • Fuente: Ranjan, V. P., et al. (2021). Journal of Hazardous Materials (IIT Kharagpur).
-
-
-        </Text>
+            <Text style={[estilo.textito, { color: "black" }]}>
+              Catarino et al. (2018) – Environmental Pollution: Cerca de 100
+              partículas caem do ar/poeira no prato durante uma refeição.
+              {"\n"}
+              Cox et al. (2019) – Environ. Sci. & Technol. (Univ. Victoria):
+              Estimativa de consumo diário por alimentos (peixes, frutos do mar,
+              sal).
+              {"\n"}
+              Hussain et al. (2023) – Environ. Sci. & Technol.: Aquecer potes
+              plásticos libera centenas de milhares de partículas em minutos.
+              {"\n"}Du et al. (2020) – Journal of Hazardous Materials: Liberação
+              de microplásticos em embalagens descartáveis com comida quente.
+            </Text>
+          </View>
+          <View
+            style={{
+              borderRadius: 10,
+              padding: 10,
+              backgroundImage:
+                "radial-gradient(transparent, rgba(255,255,255,1))",
+              margin: 10,
+              gap: 10,
+            }}
+          >
+            <Text
+              style={[estilo.subtitle, { color: "black", textAlign: "center" }]}
+            >
+              Módulo 3: Utensílios e Estilo de Vida
+            </Text>
+            <Text style={[estilo.textito, { color: "black" }]}>
+              Yadav et al. (2023) – Environ. Sci. & Technol: Cortar em tábuas
+              plásticas libera de 100 a 300 partículas por uso.
+              {"\n"}Cole et al. (2024) – Science of the Total Environment:
+              Desgaste de utensílios libera até 5.000 partículas por ano.
+              {"\n"}
+              Ranjan et al. (2021) – Journal of Hazardous Materials: Um copo
+              descartável libera ~25.000 partículas em 15 min com bebida quente.
+            </Text>
+          </View>
+        </View>
       </ScrollView>
     </ContainerGradient>
   );
