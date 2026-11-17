@@ -133,7 +133,7 @@ export default function Inicio() {
             O que é e para que foi criado PlastiCorp ?
           </Text>
           <Text style={{ fontSize: 15 }}>
-            PLASTICORP foi criada Com o fim de concientizar as pessoas sobre os perigos e da normalizaçao do
+            PLASTICORP foi criada com o fim de concientizar as pessoas sobre os perigos e da normalizaçao do
             consumo deo plastico no corpo humano Usando calculos e Inteligencia
             Artificial.
           </Text>
