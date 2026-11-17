@@ -347,6 +347,7 @@ export default function calcularPlastico() {
             <View
               style={{
                 flex: 1,
+                height:"40%",
                 padding: 10,
                 borderRadius: 10,
                 backgroundColor: "#14171C",
