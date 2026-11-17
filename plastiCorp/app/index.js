@@ -111,7 +111,12 @@ export default function Inicio() {
             gap: 10,
           }}
         >
-          <Text style={[estilo.titulo, { fontSize: 40, textAlign: "left" }]}>
+          <Text
+            style={[
+              estilo.titulo,
+              { fontSize: 40, textAlign: "left", lineHeight: 50 },
+            ]}
+          >
             Perguntas frecuentes
           </Text>
         </View>
@@ -129,15 +134,16 @@ export default function Inicio() {
             O que é e para que foi criado PlastiCorp ?
           </Text>
           <Text style={{ fontSize: 15 }}>
+            {"  "}A
             {
               <Text style={{ fontSize: 15, fontWeight: "bold" }}>
                 {" "}
                 PLASTICORP
               </Text>
             }{" "}
-            foi criada com o fim de conscientizar as pessoas sobre os perigos e
-            da normalização do consumo do plastico no corpo humano Usando
-            calculos e Inteligencia Artificial.
+            foi criada para conscientizar as pessoas sobre os perigos do uso
+            diario do plastico e como acabamos por ingerir esse material sem
+            perceber, utilizando cálculos e Inteligencia Artificial
           </Text>
         </View>
         <View
@@ -154,12 +160,11 @@ export default function Inicio() {
             O que e um micro(ou nano) plastico ?
           </Text>
           <Text style={{ fontSize: 15 }}>
-            {" "}
-            São Particulas de plasticos que estão em muitos lugares como a
-            comida, em pratos e que terminam em nosso corpo e no final uma
-            pequena fraçao deles ao ser tão pequenos não conseguem ser
-            eliminados pelo corpo por consequencia ficam como "hospedes" no
-            nosso corpo.
+            {"  "}
+            São partículas de plásticos que estão em muitos lugares, como na
+            comida e em utensilios, e que acabam entrando em nosso corpo. Por
+            serem tão pequenas, uma fração delas não conseguem ser eliminada
+            pelo organismo, e por consequência ficam como "hóspedes" em nós.
           </Text>
         </View>
         <View
@@ -173,13 +178,14 @@ export default function Inicio() {
           }}
         >
           <Text style={{ fontSize: 25 }}>
-            Consequencias do micro(ou nano) plastico no nosso corpo
+            Consequências do micro(ou nano) plástico no nosso corpo
           </Text>
           <Text style={{ fontSize: 15 }}>
-            {" "}
-            Entre as pricipais consequencia esta {"\n"}- Problemas hormonais
-            {"\n"}- Riscos cardiovasculares{"\n"}- Problemas repiratorios e
-            imunologicos {"\n"}
+            {"  "}
+            Entre as principais consequência estão:
+            {"\n"}- Problemas hormonais.
+            {"\n"}- Riscos cardiovasculares.
+            {"\n"}- Problemas repiratórios e imunológicos.
           </Text>
         </View>
       </ScrollView>
