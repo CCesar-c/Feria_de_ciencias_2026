@@ -9,3 +9,4 @@
 - el scroll bar para que se mas interativo 
 
 - y generar graficos con esas informaciones
+ 
