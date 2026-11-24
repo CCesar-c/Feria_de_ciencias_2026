@@ -3,7 +3,7 @@ import { ScrollView, View, TextInput, Text, Keyboard } from "react-native";
 import estilo from "../style/global";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { LineChart, PieChart } from "react-native-chart-kit/v2";
-// import { supabase } from "../services/db.js";
+import { supabase } from "../services/db.js";
 import {
   FadeIn,
   ReducedMotionConfig,
@@ -38,7 +38,7 @@ export default function calcularPlastico() {
     { tipo: "eliminado", valor: restPlatico * 0.99 },
     { tipo: "fica", valor: restPlatico * 0.01 },
   ];
-  let tempAgua, tempComida, tempUtensilios;
+  let tempAgua, tempComida, tempUtensilios, resPlasticoTemp;
   var dataLine = [
     { month: "jan", valor: restoMinimoPlastico * 31 },
     { month: "fev", valor: restoMinimoPlastico * (31 + 28) },
@@ -75,6 +75,17 @@ export default function calcularPlastico() {
     { month: "dez", valor: restoMinimoPlastico * 365 },
   ];
   let quantidade_cartoes_dia = (restoMinimoPlastico / 8680000000) * 100;
+  async function supabaseInsert(respostas, edad) {
+    try {
+      console.info(edad)
+
+      let obj = { respostas, "idade": edad }
+      console.log(obj)
+      let query = await supabase.from("tabela_respostas").insert(obj)
+    } catch (error) {
+      console.error("Teve um erro na inserção na linha", error.stack, "\nsobre - ", error.cause)
+    }
+  }
   return (
     <ContainerGradient>
       <ReducedMotionConfig mode="never" />
@@ -206,23 +217,25 @@ export default function calcularPlastico() {
             }}
             children={"Fazer o calculo"}
             onPress={() => {
-              setRestPlatico(
-                ((tempAgua[0]?.state ? 20 : 0) +
-                  (tempAgua[1]?.state ? 5000 : 0) +
-                  (tempAgua[2]?.state ? 17500 : 0) +
-                  (tempAgua[3]?.state ? 2 : 0)) *
-                  litrosAgua +
-                  comidaPlastico * 100 +
-                  ((tempComida[0]?.state ? 130000 : 0) +
-                    (tempComida[1]?.state ? 150 : 0) +
-                    (tempComida[2]?.state ? 250 : 0) +
-                    (tempComida[3]?.state ? 2000 : 0)) +
-                  ((tempUtensilios[0]?.state ? 200 : 0) +
-                    (tempUtensilios[1]?.state ? 15 : 0) +
-                    (tempUtensilios[2]?.state ? 25000 : 0)),
-              );
-              setfadeIn(FadeIn.duration(300));
+              resPlasticoTemp = ((tempAgua[0]?.state ? 20 : 0) +
+                (tempAgua[1]?.state ? 5000 : 0) +
+                (tempAgua[2]?.state ? 17500 : 0) +
+                (tempAgua[3]?.state ? 2 : 0)) *
+                litrosAgua +
+                comidaPlastico * 100 +
+                ((tempComida[0]?.state ? 130000 : 0) +
+                  (tempComida[1]?.state ? 150 : 0) +
+                  (tempComida[2]?.state ? 250 : 0) +
+                  (tempComida[3]?.state ? 2000 : 0)) +
+                ((tempUtensilios[0]?.state ? 200 : 0) +
+                  (tempUtensilios[1]?.state ? 15 : 0) +
+                  (tempUtensilios[2]?.state ? 25000 : 0)),
+                setRestPlatico(
+                  resPlasticoTemp
+                );
               console.log(restPlatico);
+              setfadeIn(FadeIn.duration(300));
+              supabaseInsert(resPlasticoTemp, idade)
             }}
           />
           <View
@@ -347,7 +360,7 @@ export default function calcularPlastico() {
             <View
               style={{
                 flex: 1,
-                height:"40%",
+                height: "40%",
                 padding: 10,
                 borderRadius: 10,
                 backgroundColor: "#14171C",
@@ -380,40 +393,3 @@ export default function calcularPlastico() {
     </ContainerGradient>
   );
 }
-
-/**
- *
- *  <Input
-   placeholder="Quantos litros de agua tomou hoje?"
-   placeholderTextColor={"rgba(174, 196, 191, 0.45)"}
-   keyboardType="numeric"
-   onChangeText={(e) => setLitrosAgua(Number(e))}
- />
- <ChequeBox
-   text="toma agua de Torneira?"
-   value={aguaTorneira}
-   onValueChange={setAguaTorneira}
- />
- <ChequeBox
-   text="Toma agua comprada de garrafa?"
-   value={aguaComprada}
-   onValueChange={setAguaComprada}
- />
- <ChequeBox
-   text="Toma agua filtrada?"
-   value={aguaFiltrada}
-   onValueChange={setAguaFiltrada}
- />
- <Input
-   placeholder="Quantas vezes comeu hoje?"
-   value={comidaPlastico}
-   placeholderTextColor={"rgba(174, 196, 191, 0.45)"}
-   keyboardType="numeric"
-   onChangeText={(e) => setComidaPlastico(Number(e))}
- />
- <ChequeBox
-   text="Você utiliza utensílios de plástico?"
-   value={utensiliosPlastico}
-   onValueChange={setUtensiliosPlastico}
- />
- */
