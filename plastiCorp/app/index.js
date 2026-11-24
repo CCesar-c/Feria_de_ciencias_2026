@@ -9,7 +9,7 @@ export default function Inicio() {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
-          flex: 0,
+
           paddingTop: 80,
           gap: 10,
           minHeight: "100vh",
@@ -130,7 +130,7 @@ export default function Inicio() {
             gap: 10,
           }}
         >
-          <Text style={{ fontSize: 25 }}>
+          <Text style={{ fontSize: 25}}>
             O que é e para que foi criado PlastiCorp ?
           </Text>
           <Text style={{ fontSize: 15 }}>
