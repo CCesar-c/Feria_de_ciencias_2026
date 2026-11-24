@@ -1,7 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 
 import { useRef, useState } from "react";
-import { View, Text, ScrollView, Keyboard, Image } from "react-native";
+import { View, Text, ScrollView, Keyboard, Image, useWindowDimensions } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import ContainerGradient from "../simple_code/ContainerGradient";
 import Input from "../components/Input";
@@ -13,12 +13,17 @@ const ai = new GoogleGenAI({
 });
 
 export default function Gemini() {
+
+  const { height, width } = useWindowDimensions();
+
   Keyboard.addListener("keyboardDidShow", () => setEscrevendo(true));
   Keyboard.addListener("keyboardDidHide", () => setEscrevendo(false));
 
   const [pergunta, setPergunta] = useState("");
   const [resposta, setResposta] = useState([
     { text: "Ola! eu sou o Especialista de plastiCorp, como eu posso te ajudar?", date: "17/11" },
+    { text: 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.', date: "17/11" },
+    { text: 'Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.', date: "17/11" },
   ]);
   const [escrevendo, setEscrevendo] = useState(false);
   const inputRef = useRef(null);
@@ -50,115 +55,120 @@ export default function Gemini() {
   return (
     <ContainerGradient>
       <ScrollView
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{
+          minHeight: "100%",
+          width: "100%",
           alignItems: "baseline",
-          padding: 10,
+          padding: 20,
           gap: 10,
         }}
       >
         {resposta
           ? resposta.map((rp, i) => {
-              return (
+            return (
+              <View
+                key={i}
+                style={{
+                  flex: 1,
+                  alignItems: "center",
+                  borderRadius: 0,
+                  backgroundColor: "rgba(20, 33, 120, 1.0)",
+                  borderTopStartRadius: 30,
+                  borderTopEndRadius: 30,
+                  borderEndEndRadius: 30,
+                  borderWidth: 3.5,
+                  boxSizing: "border-box",
+                  borderColor: "rgba(106, 217, 165, 1.0)",
+                  boxShadow: "0px 0px 10px 0px rgba(106, 217, 165, 1.0)",
+                }}
+              >
                 <View
-                  key={i}
                   style={{
                     flex: 1,
-                    alignItems: "center",
-                    borderRadius: 0,
-                    backgroundColor: "rgba(20, 33, 120, 1.0)",
+                    alignSelf: "center",
+                    boxSizing: "border-box",
+                    top: -3,
+                    backgroundColor: "white",
+                    padding: 5,
                     borderTopStartRadius: 30,
                     borderTopEndRadius: 30,
-                    borderEndEndRadius: 30,
-                    borderWidth: 3.5,
-                    boxSizing: "border-box",
-                    borderColor: "rgba(106, 217, 165, 1.0)",
-                    boxShadow: "0px 0px 10px 0px rgba(106, 217, 165, 1.0)",
+                    flexDirection: "row",
                   }}
                 >
-                  <View
+                  <Image
+                    source={require("../assets/icon.png")}
                     style={{
-                      flex: 1,
-                      alignSelf: "center",
-                      boxSizing: "border-box",
-                      top: -3,
-                      backgroundColor: "white",
-                      minWidth: "50%",
-                      width: "100vw",
-                      padding: 5,
-                      borderTopStartRadius: 30,
-                      borderTopEndRadius: 30,
-                      flexDirection: "row",
+                      height: 35,
+                      width: 35,
+                      borderRadius: 1000,
+                      left: 10,
                     }}
-                  >
-                    <Image
-                      source={require("../assets/icon.png")}
-                      style={{
-                        height: 35,
-                        width: 35,
-                        borderRadius: 1000,
-                        left: 10,
-                      }}
-                    />
-                    <Text
-                      style={[
-                        estilo.titulo,
-                        {
-                          alignSelf: "center",
-                          left: 12,
-                          fontWeight: "bold",
-                          fontSize: 20,
-                          lineHeight: 20,
-                          color: "rgba(106, 217, 125, 1.0)",
-                        },
-                      ]}
-                    >
-                      Especialista IA:
-                    </Text>
-                  </View>
+                  />
                   <Text
                     style={[
-                      estilo.textito,
+                      estilo.titulo,
                       {
-                        textAlign: "center",
-                        maxWidth: "90%",
-                        paddingInline:10,
-                        fontSize:18,
-                        lineHeight: 20,
                         alignSelf: "center",
-                        overflow: "scroll",
-                        margin:10,
+                        left: 12,
+                        fontWeight: "bold",
+                        fontSize: 20,
+                        lineHeight: 20,
+                        color: "rgba(106, 217, 125, 1.0)",
                       },
                     ]}
                   >
-                    {rp.text}
-                  </Text>
-                  <Text
-                    style={[
-                      estilo.textito,
-                      { alignSelf: "flex-end", right: 10, bottom: 10 },
-                    ]}
-                  >
-                    {rp.date}
+                    Especialista IA:
                   </Text>
                 </View>
-              );
-            })
+                <Text
+                  style={[
+                    estilo.textito,
+                    {
+                      textAlign: "center",
+                      maxWidth: "90%",
+                      paddingInline: 10,
+                      fontSize: 18,
+                      lineHeight: 20,
+                      alignSelf: "center",
+                      overflow: "scroll",
+                      margin: 10,
+                    },
+                  ]}
+                >
+                  {rp.text}
+                </Text>
+                <Text
+                  style={[
+                    estilo.textito,
+                    { alignSelf: "flex-end", right: 10, bottom: 10 },
+                  ]}
+                >
+                  {rp.date}
+                </Text>
+              </View>
+            );
+          })
           : null}
+        <View
+          style={{
+            height: Keyboard.isVisible() ? Keyboard.metrics().height + (height * 0.05) : height * 0.10,
+          }}
+        />
       </ScrollView>
 
       <View
         style={{
           boxShadow: "0px 0px 5px 0.1px white",
           flex: 1,
-          bottom: escrevendo == true ? Keyboard.metrics().height - 25 : "1%", // esto cambia de 1 a 50% de la pantalla para que se pueda ver
-          display: "flex",
+          bottom: escrevendo == true ? Keyboard.metrics().height - (Keyboard.metrics().height  * 0.10) : "1%", // esto cambia de 1 a 50% de la pantalla para que se pueda ver
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
           gap: 10,
           position: "absolute",
           backgroundColor: "rgba(21, 77, 89, 1.0)",
-          height: 75,
+          height: "10%",
           width: Keyboard.isVisible() ? Keyboard.metrics().width : "80%",
           borderRadius: 50,
         }}
@@ -192,12 +202,6 @@ export default function Gemini() {
           }
         />
       </View>
-
-      <View
-        style={{
-          height: Keyboard.isVisible() ? Keyboard.metrics().height : "10%",
-        }}
-      />
     </ContainerGradient>
   );
 }
