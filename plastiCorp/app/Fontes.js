@@ -8,6 +8,7 @@ export default function Fontes() {
       <ScrollView contentContainerStyle={{ gap: 10 }}>
         <View
           style={{
+            flex:1,
             borderRadius: 10,
             padding: 10,
             backgroundColor: "rgba(255,255,255,0.65)",
@@ -31,6 +32,8 @@ export default function Fontes() {
           <View
             style={{
               flex: 1,
+              borderColor: "black",
+              borderWidth:1,
               borderRadius: 10,
               padding: 10,
               backgroundImage:
@@ -63,8 +66,12 @@ export default function Fontes() {
           </View>
           <View
             style={{
+              flex:1,
+
               borderRadius: 10,
               padding: 10,
+              borderColor: "black",
+              borderWidth:1,
               backgroundImage:
                 "radial-gradient( transparent, rgba(255,255,255,1))",
               margin: 10,
@@ -93,8 +100,11 @@ export default function Fontes() {
           </View>
           <View
             style={{
+              flex:1,
               borderRadius: 10,
               padding: 10,
+              borderColor: "black",
+              borderWidth:1,
               backgroundImage:
                 "radial-gradient(transparent, rgba(255,255,255,1))",
               margin: 10,
