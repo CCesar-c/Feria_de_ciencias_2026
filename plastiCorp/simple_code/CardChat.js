@@ -80,24 +80,33 @@ function Corpo({ text, date }) {
     </View>
   );
 }
-export default function CardChat({ text, date }) {
+/**
+ *
+ * @param {import('react-native').ViewProps  & {
+ * style?: import('react-native').StyleProp<import('react-native').ViewStyle>
+ *  }} props
+ */
+export default function CardChat({ text, date, style }) {
   const { width } = useWindowDimensions();
 
   return (
     <View
-      style={{
-        flex: 1,
-        width: width * 0.9,
-        alignItems: "center",
-        borderRadius: 0,
-        backgroundColor: "rgba(20, 33, 120, 1.0)",
-        borderTopStartRadius: 30,
-        borderTopEndRadius: 30,
-        borderEndEndRadius: 30,
-        borderWidth: 3.5,
-        borderColor: "rgba(106, 217, 165, 1.0)",
-        boxShadow: "0px 0px 10px 0px rgba(106, 217, 165, 1.0)",
-      }}
+      style={[
+        {
+          flex: 1,
+          width: width * 0.9,
+          alignItems: "center",
+          borderRadius: 0,
+          backgroundColor: "rgba(20, 33, 120, 1.0)",
+          borderTopStartRadius: 30,
+          borderTopEndRadius: 30,
+          borderEndEndRadius: 30,
+          borderWidth: 3.5,
+          borderColor: "rgba(106, 217, 165, 1.0)",
+          boxShadow: "0px 0px 10px 0px rgba(106, 217, 165, 1.0)",
+        },
+        style,
+      ]}
     >
       <Cabecalho />
       <Corpo text={text} date={date} />

@@ -3,7 +3,6 @@ import { ScrollView, View, TextInput, Text, Keyboard } from "react-native";
 import estilo from "../style/global";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { LineChart, PieChart } from "react-native-chart-kit/v2";
-import { supabase } from "../services/db.js";
 import {
   FadeIn,
   ReducedMotionConfig,
@@ -75,17 +74,7 @@ export default function calcularPlastico() {
     { month: "dez", valor: restoMinimoPlastico * 365 },
   ];
   let quantidade_cartoes_dia = (restoMinimoPlastico / 8680000000) * 100;
-  async function supabaseInsert(respostas, edad) {
-    try {
-      console.info(edad)
 
-      let obj = { respostas, "idade": edad }
-      console.log(obj)
-      let query = await supabase.from("tabela_respostas").insert(obj)
-    } catch (error) {
-      console.error("Teve um erro na inserção na linha", error.stack, "\nsobre - ", error.cause)
-    }
-  }
   return (
     <ContainerGradient>
       <ReducedMotionConfig mode="never" />
@@ -235,7 +224,6 @@ export default function calcularPlastico() {
                 );
               console.log(restPlatico);
               setfadeIn(FadeIn.duration(300));
-              supabaseInsert(resPlasticoTemp, idade)
             }}
           />
           <View

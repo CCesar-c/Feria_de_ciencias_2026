@@ -1,6 +1,5 @@
 import { Text, View } from "react-native";
-import { Host, Checkbox } from "@expo/ui";
-import { border, cornerRadius } from "@expo/ui/jetpack-compose/modifiers";
+import { Host, Checkbox } from "@expo/ui/jetpack-compose";
 import estilo from "../style/global";
 
 export default function ChequeBox({
@@ -21,17 +20,15 @@ export default function ChequeBox({
     >
       <Host matchContents>
         <Checkbox
-          modifiers={[
-            border(
-              2,
-              value == true
-                ? "rgba(106, 217, 165, 1.0)"
-                : "rgba(21, 77, 89, 1.0)",
-            ),
-            cornerRadius(4),
-          ]}
+          colors={{
+            checkedColor: "black",
+            uncheckedColor: "black",
+
+            checkmarkColor: "white",
+          }}
           value={value}
-          onValueChange={onValueChange}
+          onCheckedChange={onValueChange}
+          // onValueChange={onValueChange}
         />
       </Host>
       <Text

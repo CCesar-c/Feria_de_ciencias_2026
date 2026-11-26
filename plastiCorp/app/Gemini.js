@@ -1,5 +1,4 @@
 import { GoogleGenAI } from "@google/genai";
-
 import { useRef, useState } from "react";
 import {
   View,
