@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { ScrollView, View, TextInput, Text, Keyboard } from "react-native";
+import { useState, useRef } from "react";
+import { ScrollView, View, Text, Keyboard } from "react-native";
 import estilo from "../style/global";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { LineChart, PieChart } from "react-native-chart-kit/v2";
@@ -15,6 +15,7 @@ import Input from "../components/Input";
 import PreguntaModulo from "../simple_code/PreguntaModulo";
 
 export default function calcularPlastico() {
+  const [largura, setLargura] = useState(350)
   const [heightHidden, setHeightHidden] = useState(10);
   Keyboard.addListener("keyboardDidShow", () => {
     setHeightHidden(Keyboard.metrics().height);
@@ -23,7 +24,7 @@ export default function calcularPlastico() {
     setHeightHidden(0);
   });
   const AnimatedView = createAnimatedComponent(View);
-  const [restPlatico, setRestPlatico] = useState(0);
+  const [restPlatico, setRestPlatico] = useState(1);
   const [fadeIn, setfadeIn] = useState();
 
   const [peso, setPeso] = useState(0);
@@ -74,7 +75,6 @@ export default function calcularPlastico() {
     { month: "dez", valor: restoMinimoPlastico * 365 },
   ];
   let quantidade_cartoes_dia = (restoMinimoPlastico / 8680000000) * 100;
-
   return (
     <ContainerGradient>
       <ReducedMotionConfig mode="never" />
@@ -83,6 +83,9 @@ export default function calcularPlastico() {
           style={[
             {
               flex: 1,
+              height: "stretch",
+              minWidth: "90%",
+              maxWidth: "90%",
               boxShadow: "0px 0px 10px 0.1px black",
               alignSelf: "center",
               borderColor: "black",
@@ -206,11 +209,12 @@ export default function calcularPlastico() {
             }}
             children={"Fazer o calculo"}
             onPress={() => {
-              resPlasticoTemp = ((tempAgua[0]?.state ? 20 : 0) +
-                (tempAgua[1]?.state ? 5000 : 0) +
-                (tempAgua[2]?.state ? 17500 : 0) +
-                (tempAgua[3]?.state ? 2 : 0)) *
-                litrosAgua +
+              ((resPlasticoTemp =
+                ((tempAgua[0]?.state ? 20 : 0) +
+                  (tempAgua[1]?.state ? 5000 : 0) +
+                  (tempAgua[2]?.state ? 17500 : 0) +
+                  (tempAgua[3]?.state ? 2 : 0)) *
+                  litrosAgua +
                 comidaPlastico * 100 +
                 ((tempComida[0]?.state ? 130000 : 0) +
                   (tempComida[1]?.state ? 150 : 0) +
@@ -218,10 +222,8 @@ export default function calcularPlastico() {
                   (tempComida[3]?.state ? 2000 : 0)) +
                 ((tempUtensilios[0]?.state ? 200 : 0) +
                   (tempUtensilios[1]?.state ? 15 : 0) +
-                  (tempUtensilios[2]?.state ? 25000 : 0)),
-                setRestPlatico(
-                  resPlasticoTemp
-                );
+                  (tempUtensilios[2]?.state ? 25000 : 0))),
+                setRestPlatico(resPlasticoTemp));
               console.log(restPlatico);
               setfadeIn(FadeIn.duration(300));
             }}
@@ -230,7 +232,7 @@ export default function calcularPlastico() {
             style={{
               height: restPlatico == 0 ? heightHidden : 0,
             }}
-          ></View>
+          />
         </View>
         {restPlatico != 0 ? (
           <AnimatedView
@@ -239,13 +241,15 @@ export default function calcularPlastico() {
               estilo.card,
               {
                 minHeight: "100%",
-                width: "90%",
+                width: "stretch",
                 alignItems: "center",
                 flexDirection: "column",
                 alignSelf: "center",
                 rowGap: 10,
-                borderWidth: 5,
+                borderWidth: 1,
                 borderColor: "rgba(0,0,0,0.09)",
+                margin: 10,
+                padding: 10,
               },
             ]}
           >
@@ -265,12 +269,31 @@ export default function calcularPlastico() {
             <Text style={[estilo.textito, { alignSelf: "baseline", left: 15 }]}>
               Quantidade de plastico por dia
             </Text>
-            <View style={{ borderRadius: 10, borderWidth: 1 }}>
+
+            <View
+              onLayout={(e) => {
+                const { width } = e.nativeEvent.layout;
+                setLargura(width * 0.9)
+                console.log(largura)
+              }}
+              style={{
+                height: "stretch",
+                minWidth: "90%",
+                maxWidth: "90%",
+                borderRadius: 10,
+                borderWidth: 1,
+                padding: 20,
+                backgroundColor: "#14171C",
+              }}
+            >
               <PieChart
                 data={data}
                 labelKey="tipo"
                 valueKey="valor"
-                theme={"dark"}
+                theme={{
+                  background: "#14171C",
+                  text: "white",
+                }}
                 legend={true}
                 selectedIndex={0}
                 colors={["gray", "red"]}
@@ -281,14 +304,24 @@ export default function calcularPlastico() {
                     `${label}: ${valueLabel}`,
                 }}
                 height={300}
-                width={350}
+                width={largura}
               />
             </View>
             <Text style={[estilo.textito, { alignSelf: "baseline", left: 15 }]}>
               Quantidade de plastico por mes do que sobrou
             </Text>
 
-            <View style={{ borderRadius: 10, borderWidth: 1 }}>
+            <View
+              style={{
+                height: "stretch",
+                minWidth: "90%",
+                maxWidth: "90%",
+                borderRadius: 10,
+                borderWidth: 1,
+                padding: 20,
+                backgroundColor: "#14171C",
+              }}
+            >
               <LineChart
                 data={dataLine}
                 scrollable
@@ -315,7 +348,7 @@ export default function calcularPlastico() {
                 xKey="month"
                 yKey="valor"
                 height={300}
-                width={350}
+                width={largura}
               />
             </View>
             <Text style={[estilo.textito, { alignSelf: "baseline", left: 15 }]}>
@@ -323,8 +356,12 @@ export default function calcularPlastico() {
             </Text>
             <View
               style={{
-                padding: 10,
+                height: "stretch",
+                minWidth: "90%",
+                maxWidth: "90%",
                 borderRadius: 10,
+                borderWidth: 1,
+                padding: 20,
                 backgroundColor: "#14171C",
               }}
             >
@@ -347,9 +384,10 @@ export default function calcularPlastico() {
             </View>
             <View
               style={{
-                flex: 1,
-                height: "40%",
-                padding: 10,
+                height: "stretch",
+                minWidth: "90%",
+                maxWidth: "90%",
+                padding: 20,
                 borderRadius: 10,
                 backgroundColor: "#14171C",
               }}
